@@ -46,6 +46,7 @@ def activate_order(request, order_id, transaction_id):
             status_message = f"Payment successful for {transaction_id}! Your order is now active."
             order = Order.objects.get(id=order_id)
             order.active = True
+            order.transaction_id = transaction_id
             order.save()
         elif str(transaction_data['data']['status']).lower() == 'failed':
             status_message = f"Payment failed for {transaction_id}, please try again."
