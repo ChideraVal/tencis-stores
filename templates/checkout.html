@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Tencis Stores</title>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
     {% load static %}
     {% load checkmodels %}
 
@@ -193,7 +194,7 @@
                 // redirect_url: "https://my-render-app-w4yy.onrender.com/verify",
                 customer: {
                     email: "{{ order.email }}",
-                    phone_number: "{{ order.phone }}",
+                    phone_number: Number("{{ order.phone }}"),
                     name: "{{ order.first_name }} {{ order.last_name }}",
                 },
                 customizations: {
@@ -203,7 +204,7 @@
                 },
                 callback: function (payment) {
                     console.log(payment)
-                    open(`https://my-render-app-w4yy.onrender.com/verify/${payment.transaction_id}`, '_parent')
+                    open(`https://tencis-stores.onrender.com/verify/${payment.transaction_id}`, '_parent')
                 },
             });
         }
