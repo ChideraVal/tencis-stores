@@ -63,7 +63,6 @@ def check_cookie_support(request):
 
 @csrf_exempt
 def product_list(request):
-    # check_cookie_support(request)
     products = Product.objects.all()
     cart_id_exists = request.session.__contains__("cart_id")
     if cart_id_exists:
@@ -109,7 +108,6 @@ def add_to_cart(request, product_id):
                              'cartTotalPrice': cart.get_total_price()})
 
 def cart(request):
-    # print(check_cookie_support(request))
     cart = get_cart(request)
     if request.method == 'POST':
         form = OrderForm(request.POST)
