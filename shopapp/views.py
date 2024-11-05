@@ -39,11 +39,9 @@ def activate_order(request, order_id, transaction_id):
         return HttpResponse('Transaction ID missing!')
 
     transaction_data = check_transaction_status(request, transaction_id)
-    status_message = f"Payment processing for {transaction_id}, please refresh to check."
 
     if transaction_data:
         if str(transaction_data['status']).lower() == 'success' and str(transaction_data['data']['status']).lower() == 'successful':
-            status_message = f"Payment successful for {transaction_id}! Your order is now active."
             order = Order.objects.get(id=order_id)
             order.active = True
             order.transaction_id = transaction_id
@@ -51,22 +49,21 @@ def activate_order(request, order_id, transaction_id):
             return render(request, 'paymentsuccess.html', {'order': order})
 
         elif str(transaction_data['data']['status']).lower() == 'failed':
-            status_message = f"Payment failed for {transaction_id}, please try again."
             return render(request, 'paymentfailed.html', {'order': order})
         else:
-            status_message = f"Payment processing for {transaction_id}, please refresh to check."
             return render(request, 'paymentprocessing.html', {'order': order})
-    print(status_message)
     return HttpResponse('No transaction data!')
 
-def order_confirmed(request, order_id):
-    order = Order.objects.get(id=order_id)
-    if not order.active:
-        return redirect(f'/checkout/{order_id}/')
-    return render(request, 'orderconfirmed.html', {'order': order})
+def check_cookie_support(request):
+    request.session.set_test_cookie()
+    if request.session.test_cookie_worked():
+        return HttpResponse("This browser doesn't support cookies, please try using another browser that supports cookies.")
+    request.session.delete_test_cookie()
+    return None
 
 @csrf_exempt
 def product_list(request):
+    # check_cookie_support(request)
     products = Product.objects.all()
     cart_id_exists = request.session.__contains__("cart_id")
     if cart_id_exists:
@@ -112,6 +109,7 @@ def add_to_cart(request, product_id):
                              'cartTotalPrice': cart.get_total_price()})
 
 def cart(request):
+    # print(check_cookie_support(request))
     cart = get_cart(request)
     if request.method == 'POST':
         form = OrderForm(request.POST)

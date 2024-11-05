@@ -119,7 +119,7 @@
                     <div class="linkdiv">
                         <p class="for">contact us</p>
                         <a href="tel:09130592962">09130592962</a>
-                        <a href="mailto:dbstores@gmail.com">dbstores@gmail.com</a>
+                        <a href="mailto:tcstores@gmail.com">tcstores@gmail.com</a>
                     </div>
                     <div class="linkdiv">
                         <p class="for">follow us</p>
@@ -188,7 +188,7 @@
             FlutterwaveCheckout({
                 public_key: "FLWPUBK-4665a5bfdd9fe8535fa8c74f0d845b09-X",
                 tx_ref: "{{ order.order_id }}",
-                amount: "{{ order.get_total_price }}",
+                amount: Number("{{ order.get_total_price }}"),
                 currency: "NGN",
                 payment_options: "card, mobilemoneyghana, ussd",
                 // redirect_url: "https://my-render-app-w4yy.onrender.com/verify",
@@ -200,7 +200,6 @@
                 customizations: {
                     title: "Tencis Stores",
                     description: "Pay now to complete your purchase and verify your order.",
-                    // logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
                 },
                 callback: function (payment) {
                     console.log(payment)
