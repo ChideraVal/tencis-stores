@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Tencis Stores</title>
+    {% load static %}
+    {% load checkmodels %}
+
+    <link rel="stylesheet" href="{% static 'shop.css' %}">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="con">
+        <div class="shop" id="shop" style="padding-top: .7em;" data-aos="fade-up" data-aos-duration="1000"
+            data-aos-delay="200">
+            <div class="ctg">
+                <div class="ctgheader">
+                    <h2>Review Order</h2>
+                </div>
+                <p id="cart-count-2">{{ order.cartproducts.all.count }} products</p>
+                <div class="shopcon">
+                    {% for cartproduct in order.cartproducts.all %}
+                    <div class="shopbox" id="div-{{ cartproduct.product.id }}">
+                        <img src="{{ cartproduct.product.image.url }}" alt="">
+                        <p class="itemname">{{ cartproduct.product.name }}</p>
+                        <p class="itemprice">${{ cartproduct.product.price }}</p>
+                        <p class="itemprice" id="price-{{ cartproduct.id }}"
+                            style="font-size: 1em; font-weight: 400; border-top: 1px solid #e4dede; margin-top: .3em; padding-top: .3em;">
+                            ${{ cartproduct.total_price }}</p>
+                        <div class="qty">
+                            <p class="qtytext" id="qty-{{ cartproduct.id }}">{{ cartproduct.quantity }} unit{{ cartproduct.quantity|pluralize }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="checkout">
+
+                    <div class="total">
+                        <h2>Confirm Order</h2>
+                        <div class="totaltext">
+                            <p>Total Items</p>
+                            <p id="cart-total-items">{{ order.get_total_items }}</p>
+                        </div>
+                        <div class="totaltext">
+                            <p>Total Price</p>
+                            <p id="cart-total-price">${{ order.get_total_price }}</p>
+                        </div>
+
+                        <p class="info">
+                            Once you click the 'Confirm Order" button below, you will be
+                            redirected to our payment page where you will charged the sum total of <span
+                                id="info-price">${{ order.get_total_price }}</span> to
+                            complete your purchase.
+                        </p>
+                        <button class="pay" onclick="makePayment()">Confirm Order</button>
+                    </div>
+
+                    <div class="details">
+                        <h2>Shipping Information</h2>
+
+                        <form action="/cart/" method="post">
+                            {% csrf_token %}
+                            <div class="form">
+                                <p>First name</p>
+                                <input type="text" value="{{ order.first_name }}" disabled>
+                            </div>
+
+                            <div class="form">
+                                <p>Last name</p>
+                                <input type="text" value="{{ order.last_name }}" disabled>
+                            </div>
+
+                            <div class="form">
+                                <p>Email</p>
+                                <input type="text" value="{{ order.email }}" disabled>
+                            </div>
+
+                            <div class="form">
+                                <p>Phone</p>
+                                <input type="text" value="{{ order.phone }}" disabled>
+                            </div>
+
+                            <div class="form">
+                                <p>Address</p>
+                                <input type="text" value="{{ order.address }}" disabled>
+                            </div>
+
+                            <div class="form">
+                                <p>State</p>
+                                <input type="text" value="{{ order.state }}" disabled>
+                            </div>
+
+                            <div class="form">
+                                <p>Zip code</p>
+                                <input type="text" value="{{ order.zip_code }}" disabled>
+                            </div>
+                        
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="contact" id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="contcon">
+
+                <div class="contlogo">
+                    <h2>Tencis Stores</h2>
+                </div>
+                <div class="contlinks">
+                    <div class="linkdiv">
+                        <p class="for">contact us</p>
+                        <a href="tel:09130592962">09130592962</a>
+                        <a href="mailto:dbstores@gmail.com">dbstores@gmail.com</a>
+                    </div>
+                    <div class="linkdiv">
+                        <p class="for">follow us</p>
+                        <a href="">Facebook</a>
+                        <a href="">Instagram</a>
+                        <a href="">Threads</a>
+                        <a href="">Tiktok</a>
+                        <a href="">Youtube</a>
+                    </div>
+                    <div class="linkdiv">
+                        <p class="for">Communities</p>
+                        <a href="">Facebook</a>
+                        <a href="">Instagram</a>
+                        <a href="">Discord</a>
+                        <a href="">Whatsapp</a>
+                    </div>
+                </div>
+                <div class="conticons">
+                    <div class="imgcon">
+                        <img src="{% static 'instagram_4494468.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="imgcon">
+                        <img src="{% static 'facebook_2168281.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="imgcon">
+                        <img src="{% static 'twitter_4401454.png' %}" alt="" width="35" height="35">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="menu">
+        <div class="logo">
+            <h1>Tencis Stores</h1>
+        </div>
+        <div class="links">
+            <a href="/#">Home</a>
+            <a href="/#shop">Shop</a>
+            <a href="/#about">About</a>
+            <a href="/#reviews">Reviews</a>
+            <a href="/#contact">Contact</a>
+            <button id="menu-button">Menu</button>
+        </div>
+    </div>
+
+    <div class="banner">
+        <p>Created by <a href="https://www.tencis.online">Tencis Designs</a> </p>
+    </div>
+
+    <div class="menubox" id="menu-element">
+        <div class="menupage">
+            <h3>Menu</h3>
+            <button id="home-button">Home</button>
+            <button id="shop-button">Shop</button>
+            <button id="about-button">About</button>
+            <button id="reviews-button">Reviews</button>
+            <button id="contact-button">Contact</button>
+            <button id="close-button">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function makePayment() {
+            console.log(name.value, email.value);
+            FlutterwaveCheckout({
+                public_key: "FLWPUBK-4665a5bfdd9fe8535fa8c74f0d845b09-X",
+                tx_ref: "{{ order.order_id }}",
+                amount: "{{ order.get_total_price }}",
+                currency: "NGN",
+                payment_options: "card, mobilemoneyghana, ussd",
+                // redirect_url: "https://my-render-app-w4yy.onrender.com/verify",
+                customer: {
+                    email: "{{ order.email }}",
+                    phone_number: "{{ order.phone }}",
+                    name: "{{ order.first_name }} {{ order.last_name }}",
+                },
+                customizations: {
+                    title: "Tencis Stores",
+                    description: "Pay now to complete your purchase and verify your order.",
+                    // logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+                },
+                callback: function (payment) {
+                    console.log(payment)
+                    open(`https://my-render-app-w4yy.onrender.com/verify/${payment.transaction_id}`, '_parent')
+                },
+            });
+        }
+    </script>
+
+
+    <script>
+        let menuButton = document.getElementById('menu-button');
+        let menuElement = document.getElementById('menu-element');
+        let homeDiv = document.getElementById('home');
+        let shopDiv = document.getElementById('shop');
+        let aboutDiv = document.getElementById('about');
+        let reviewsDiv = document.getElementById('reviews');
+        let contactDiv = document.getElementById('contact');
+        let homeButton = document.getElementById('home-button');
+        let shopButton = document.getElementById('shop-button');
+        let aboutButton = document.getElementById('about-button');
+        let reviewsButton = document.getElementById('reviews-button');
+        let contactButton = document.getElementById('contact-button');
+        let closeButton = document.getElementById('close-button');
+
+        menuButton.onclick = () => {
+            menuElement.style.display = 'flex';
+        }
+
+        closeButton.onclick = () => {
+            menuElement.style.display = 'none';
+        }
+
+        homeButton.onclick = () => {
+            open('/#', '_parent')
+        }
+
+        aboutButton.onclick = () => {
+            open('/#about', '_parent')
+        }
+
+        shopButton.onclick = () => {
+            open('/#shop', '_parent')
+        }
+
+        reviewsButton.onclick = () => {
+            open('/#reviews', '_parent')
+        }
+
+        contactButton.onclick = () => {
+            contactDiv.scrollIntoView({ behavior: 'smooth' })
+            menuElement.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

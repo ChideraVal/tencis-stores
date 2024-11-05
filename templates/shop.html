@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tencis Stores</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'shop.css' %}">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> -->
+
+</head>
+
+<body>
+    <div class="con">
+        <div class="home" id="#">
+            <div class="text">
+                <!-- <h1>Hi! I'm Chidera.</h1> -->
+                <!-- <h1>A web developer.</h1> -->
+                <!-- <h1>Welcome to</h1>
+                 <h1>Tencis Designs</h1> -->
+                <h1>Time telling at it's finest.</h1>
+
+                <p>Extraordinary and redefined watches
+                    <br>
+                    at your fingertips.
+                </p>
+
+                <a href="#shop">Shop Now</a>
+            </div>
+            <div class="image">
+                <img src="{% static 'watchimg.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="ft">
+            <div class="ftcon">
+                <div class="ftconsub">
+                    <div class="ftbox">
+                        <img src="{% static 'dashboard.png' %}" alt="">
+                        <h2>Performance</h2>
+                        <p>Engineered for precision and durability, this watch delivers consistent, reliable timekeeping
+                            to keep you on track every day.</p>
+                    </div>
+                    <div class="ftbox">
+                        <img src="{% static 'calendar.png' %}" alt="">
+                        <h2>Time and date</h2>
+                        <p>Effortlessly keep track of time and date with a crisp, easy-to-read display that enhances
+                            everyday convenience.</p>
+                    </div>
+                </div>
+                <div class="ftimg">
+                    <img src="{% static 'white-sports-watch-600x600.png' %}" alt="">
+                </div>
+                <div class="ftconsub">
+                    <div class="ftbox">
+                        <img src="{% static 'batteryv.png' %}" alt="">
+                        <h2>Long battery life</h2>
+                        <p>Enjoy extended usage with a long-lasting battery that powers your watch for days without
+                            frequent recharging.</p>
+                    </div>
+                    <div class="ftbox">
+                        <img src="{% static 'price-tag.png' %}" alt="">
+                        <h2>Affordable price</h2>
+                        <p>As for the pricing, get the perfect balance of style, functionality, and quality at a price
+                            point that's easy on your wallet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shop" id="shop" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="ctg">
+                <div class="ctgheader">
+                    <h2>Our Products</h2>
+                    <a href="/products/">see all</a>
+                </div>
+
+                <div class="shopcon">
+                    {% for product in products %}
+                    <div class="shopbox">
+                        <!-- <p class="new">NEW</p> -->
+                        <img src="{{ product.image.url }}" alt="">
+                        <p class="itemname">{{ product.name }}</p>
+                        <p class="itemprice">${{ product.price }}</p>
+                    </div>
+                    {% empty %}
+                    <p>No products available!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="about featurerev" id="about" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="text">
+
+                <h1>About Us</h1>
+
+                <p>
+                    At Tencis Stores, we believe that a great watch is more than just a timepiece—it's a reflection
+                    of your style and personality. Our collection combines precision, durability, and elegance to offer
+                    watches that suit every occasion. Whether you're looking for performance, long battery life, or
+                    affordable luxury, our watches deliver on all fronts.
+                </p>
+
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="image">
+                <img src="{% static 'navy-blue-watch-600x600.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="reviews" id="reviews" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="revhead">
+                <p>Customer Reviews</p>
+            </div>
+
+            <div class="revcon">
+                <div class="revbox">
+                    <div class="author">
+                        <div class="authorimg">
+                            <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                        </div>
+                        <div class="authordesc">
+                            <p class="name">Stella Smith</p>
+                            <p class="state">Lagos</p>
+                        </div>
+                    </div>
+                    <p>"I’m blown away by the quality of my watch. It looks and feels premium but didn’t cost me a
+                        fortune. The performance is top-notch, and I love that the battery lasts for days. Highly
+                        recommend if you're looking for both style and functionality!"</p>
+                </div>
+
+                <div class="revbox">
+                    <div class="author">
+                        <div class="authorimg">
+                            <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                        </div>
+                        <div class="authordesc">
+                            <p class="name">Aisha Barakat</p>
+                            <p class="state">Ibadan</p>
+                        </div>
+                    </div>
+                    <p>"I wasn’t sure what to expect for the price, but this watch has been fantastic. The timekeeping
+                        is incredibly accurate, and the design is sleek and modern. It’s become my go-to accessory, and
+                        I get compliments all the time. Great value for the money!"</p>
+                </div>
+
+                <div class="revbox">
+                    <div class="author">
+                        <div class="authorimg">
+                            <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                        </div>
+                        <div class="authordesc">
+                            <p class="name">Solomon Adeyemi</p>
+                            <p class="state">Abuja</p>
+                        </div>
+                    </div>
+                    <p>"I love how this watch blends elegance with practicality. It’s not only beautiful but also
+                        reliable. The time and date display is easy to read, and the battery life is impressive. I’ve
+                        had it for months now, and it’s still going strong."</p>
+                </div>
+
+                <div class="revbox">
+                    <div class="author">
+                        <div class="authorimg">
+                            <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                        </div>
+                        <div class="authordesc">
+                            <p class="name">Jessica Okeke</p>
+                            <p class="state">Enugu</p>
+                        </div>
+                    </div>
+                    <p>"This watch fits perfectly into my daily routine. It’s comfortable, lightweight, and I never have
+                        to worry about charging it constantly. The affordable price made it a great buy, but the quality
+                        makes me feel like I got something much more expensive!"</p>
+                </div>
+
+                <div class="revbox">
+                    <div class="author">
+                        <div class="authorimg">
+                            <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                        </div>
+                        <div class="authordesc">
+                            <p class="name">Stanley Williams</p>
+                            <p class="state">Jos</p>
+                        </div>
+                    </div>
+                    <p>"As someone always on the move, I needed a watch I could rely on, and this one delivers. It’s
+                        durable, stylish, and the long battery life is a lifesaver. I don’t have to worry about it
+                        running out of power when I need it most."
+                    </p>
+                </div>
+
+                <div class="revbox">
+                    <div class="author">
+                        <div class="authorimg">
+                            <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                        </div>
+                        <div class="authordesc">
+                            <p class="name">Chinaza MaryAnn</p>
+                            <p class="state">Lagos</p>
+                        </div>
+                    </div>
+                    <p>"This watch has quickly become one of my favorite accessories. It performs flawlessly, keeping
+                        time with precision, and I love the sleek design. It’s perfect for both casual and formal
+                        settings. I’m genuinely impressed with how well it holds up to daily wear."</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="contact" id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="contcon">
+
+                <div class="contlogo">
+                    <h2>Tencis Stores</h2>
+                </div>
+                <div class="contlinks">
+                    <div class="linkdiv">
+                        <p class="for">contact us</p>
+                        <a href="tel:09130592962">09130592962</a>
+                        <a href="mailto:dbstores@gmail.com">dbstores@gmail.com</a>
+                    </div>
+                    <div class="linkdiv">
+                        <p class="for">follow us</p>
+                        <a href="">Facebook</a>
+                        <a href="">Instagram</a>
+                        <a href="">Threads</a>
+                        <a href="">Tiktok</a>
+                        <a href="">Youtube</a>
+                    </div>
+                    <div class="linkdiv">
+                        <p class="for">Communities</p>
+                        <a href="">Facebook</a>
+                        <a href="">Instagram</a>
+                        <a href="">Discord</a>
+                        <a href="">Whatsapp</a>
+                    </div>
+                </div>
+                <div class="conticons">
+                    <div class="imgcon">
+                        <img src="{% static 'instagram_4494468.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="imgcon">
+                        <img src="{% static 'facebook_2168281.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="imgcon">
+                        <img src="{% static 'twitter_4401454.png' %}" alt="" width="35" height="35">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="menu">
+        <div class="logo">
+            <h1>Tencis Stores</h1>
+        </div>
+        <div class="links">
+            <a href="#">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#about">About</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+            <button id="menu-button">Menu</button>
+        </div>
+    </div>
+
+    <div class="banner">
+        <p>Created by <a href="index.html">Tencis Designs</a> </p>
+    </div>
+
+    <div class="menubox" id="menu-element">
+        <div class="menupage">
+            <h3>Menu</h3>
+            <button id="home-button">Home</button>
+            <button id="shop-button">Shop</button>
+            <button id="about-button">About</button>
+            <button id="reviews-button">Reviews</button>
+            <button id="contact-button">Contact</button>
+            <button id="close-button">Close</button>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+    </script>
+
+
+    <script>
+        let menuButton = document.getElementById('menu-button');
+        let menuElement = document.getElementById('menu-element');
+        let homeDiv = document.getElementById('home');
+        let aboutDiv = document.getElementById('about');
+        let shopDiv = document.getElementById('shop');
+        let reviewsDiv = document.getElementById('reviews');
+        let contactDiv = document.getElementById('contact');
+        let homeButton = document.getElementById('home-button');
+        let aboutButton = document.getElementById('about-button');
+        let shopButton = document.getElementById('shop-button');
+        let reviewsButton = document.getElementById('reviews-button');
+        let contactButton = document.getElementById('contact-button');
+        let closeButton = document.getElementById('close-button');
+
+
+        menuButton.onclick = () => {
+            menuElement.style.display = 'flex';
+        }
+
+        closeButton.onclick = () => {
+            menuElement.style.display = 'none';
+        }
+
+        homeButton.onclick = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+            menuElement.style.display = 'none';
+        }
+
+        aboutButton.onclick = () => {
+            aboutDiv.scrollIntoView({ behavior: 'smooth' })
+            menuElement.style.display = 'none';
+        }
+
+        shopButton.onclick = () => {
+            shopDiv.scrollIntoView({ behavior: 'smooth' })
+            menuElement.style.display = 'none';
+        }
+
+        reviewsButton.onclick = () => {
+            reviewsDiv.scrollIntoView({ behavior: 'smooth' })
+            menuElement.style.display = 'none';
+        }
+
+        contactButton.onclick = () => {
+            contactDiv.scrollIntoView({ behavior: 'smooth' })
+            menuElement.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
