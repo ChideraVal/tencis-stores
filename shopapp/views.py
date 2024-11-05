@@ -48,14 +48,16 @@ def activate_order(request, order_id, transaction_id):
             order.active = True
             order.transaction_id = transaction_id
             order.save()
+            return render(request, 'paymentsuccess.html', {'order': order})
+
         elif str(transaction_data['data']['status']).lower() == 'failed':
             status_message = f"Payment failed for {transaction_id}, please try again."
-        elif str(transaction_data['data']['status']).lower() == 'cancelled':
-            status_message = f"Payment cancelled for {transaction_id}, please try again."
+            return render(request, 'paymentfailed.html', {'order': order})
         else:
             status_message = f"Payment processing for {transaction_id}, please refresh to check."
-
-    return render(request, 'order_status.html', {'status_message': status_message})
+            return render(request, 'paymentprocessing.html', {'order': order})
+    print(status_message)
+    return HttpResponse('No transaction data!')
 
 def order_confirmed(request, order_id):
     order = Order.objects.get(id=order_id)
