@@ -204,7 +204,7 @@
                 },
                 callback: function (payment) {
                     console.log(payment)
-                    open(`https://tencis-stores.onrender.com/verify/${payment.transaction_id}`, '_parent')
+                    open(`https://tencis-stores.onrender.com/verify/{{ order.id }}/${payment.transaction_id}`, '_parent')
                 },
             });
         }
