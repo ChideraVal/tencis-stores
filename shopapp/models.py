@@ -41,7 +41,7 @@ class CartProduct(models.Model):
 
 class Order(models.Model):
     order_id = models.CharField(max_length=150, null=True, blank=False)
-    transaction_id = models.CharField(max_length=150, null=True, blank=False)
+    transaction_id = models.CharField(max_length=150, null=True, blank=True)
     first_name = models.CharField(max_length=150, null=False, blank=False)
     last_name = models.CharField(max_length=150, null=False, blank=False)
     email = models.EmailField(max_length=100, unique=True, null=False, blank=False, error_messages={
@@ -52,8 +52,14 @@ class Order(models.Model):
     state = models.CharField(max_length=150, null=False, blank=False)
     zip_code = models.IntegerField(null=False, blank=False)
     active = models.BooleanField(default=False)
+    processed = models.BooleanField(default=False)
+    shipped = models.BooleanField(default=False)
+    delivered = models.BooleanField(default=False)
     cartproducts = models.ManyToManyField(CartProduct, blank=False)
     create_time = models.DateTimeField(default=timezone.now)
+    processed_time = models.DateTimeField(default=timezone.now)
+    shipped_time = models.DateTimeField(default=timezone.now)
+    delivered_time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.email

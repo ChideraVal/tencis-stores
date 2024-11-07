@@ -19,7 +19,15 @@ def home(request):
 
 def checkout(request, order_id):
     order = Order.objects.get(id=order_id)
+    if order.active:
+        return redirect(f'/trackorder/{order_id}')
     return render(request, 'checkout.html', {'order': order})
+
+def track_order(request, order_id):
+    order = Order.objects.get(id=order_id)
+    if not order.active:
+        return redirect(f'/checkout/{order_id}')
+    return render(request, 'trackorder.html', {'order': order})
 
 def check_transaction_status(request, transaction_id):
     url = f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
@@ -34,6 +42,9 @@ def check_transaction_status(request, transaction_id):
 
 def activate_order(request, order_id, transaction_id):
     transaction_id = str(transaction_id)
+    order = Order.objects.get(id=order_id)
+    if order.active:
+        return redirect(f'/trackorder/{order_id}')
     
     if not transaction_id:
         return HttpResponse('Transaction ID missing!')
@@ -42,7 +53,6 @@ def activate_order(request, order_id, transaction_id):
 
     if transaction_data:
         if str(transaction_data['status']).lower() == 'success' and str(transaction_data['data']['status']).lower() == 'successful':
-            order = Order.objects.get(id=order_id)
             order.active = True
             order.transaction_id = transaction_id
             order.save()

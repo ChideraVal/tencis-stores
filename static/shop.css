@@ -870,6 +870,57 @@ p.info {
     padding: 1em;
 }
 
+.status {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    box-shadow: 1px 1px .7em rgb(209, 202, 202);
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: .5em;
+    margin-bottom: 1em;
+}
+
+.status:last-of-type {
+    margin-bottom: 0;
+}
+
+.checkicon img {
+    display: block;
+}
+
+.status p {
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-size: .9em;
+    color: #444;
+}
+
+.statustext {
+    flex: 1;
+}
+
+.statustext p:first-of-type {
+    font-weight: bold;
+    color: black;
+}
+
+.statusstate p {
+    color: orange;
+    background-color: rgb(243, 234, 215);
+    font-size: .75em;
+    padding: .5em;
+    box-sizing: border-box;
+    border-radius: .3em;
+}
+
+.statusstate p.complete {
+    color: green;
+    background-color: rgb(210, 240, 210);
+}
+
 .orderitem {
     display: flex;
     align-items: center;
@@ -883,7 +934,6 @@ p.info {
 .orderitem p:first-of-type {
     flex: 1;
 }
-
 
 .orderitem p:last-of-type {
     font-weight: bold;

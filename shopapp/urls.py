@@ -9,6 +9,6 @@ urlpatterns = [
     path('increase/<int:cartproduct_id>/', views.increase),
     path('decrease/<int:cartproduct_id>/', views.decrease),
     path('checkout/<int:order_id>/', views.checkout),
-    path('verify/<int:order_id>/<int:transaction_id>/', views.activate_order)
-    # path('paymentverified/<int:order_id>/', views.order_confirmed)
+    path('verify/<int:order_id>/<int:transaction_id>/', views.activate_order),
+    path('trackorder/<int:order_id>/', views.track_order)
 ]
