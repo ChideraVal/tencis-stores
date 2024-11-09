@@ -4,7 +4,7 @@ from django.utils import timezone
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(blank=False, null=True, upload_to='product_images')
+    image = models.ImageField(blank=False, null=True, upload_to='tc_product_images')
 
     def __str__(self):
         return self.name

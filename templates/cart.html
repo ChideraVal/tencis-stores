@@ -27,7 +27,7 @@
                     {% for cartproduct in cart.cartproduct_set.all %}
                     <div class="shopbox" id="div-{{ cartproduct.product.id }}">
                         <!-- <p class="new">NEW</p> -->
-                        <img src="{{ cartproduct.product.image.url }}" alt="">
+                        <img src="{{ cartproduct.product.image.url }}" alt="{{ cartproduct.product.image.name }}">
                         <p class="itemname">{{ cartproduct.product.name }}</p>
                         <p class="itemprice">${{ cartproduct.product.price }}</p>
                         <p class="itemprice" id="price-{{ cartproduct.id }}"
@@ -218,7 +218,7 @@
                         $('#cart-count-2').text(`${response.cartItemCount} product${response.cartItemCount === 1 ? '' : 's'}`);
                         document.getElementById(`cart-total-items`).textContent = `${response.cartTotalItems}`;
                         document.getElementById(`cart-total-price`).textContent = `$${response.cartTotalPrice}`;
-                        document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
+                        // document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
                         // Update cart count if necessary
                         document.getElementById(`div-${product_id}`).style.display = 'none';
                         if (response.cartItemCount === 0) {
@@ -249,7 +249,7 @@
                         document.getElementById(`price-${cartproduct_id}`).textContent = `$${response.totalPrice}`;
                         document.getElementById(`cart-total-items`).textContent = `${response.cartTotalItems}`;
                         document.getElementById(`cart-total-price`).textContent = `$${response.cartTotalPrice}`;
-                        document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
+                        // document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
                     },
                     error: function (xhr, status, error) {
                         console.error(error); // Handle errors
@@ -277,7 +277,7 @@
                         document.getElementById(`price-${cartproduct_id}`).textContent = `$${response.totalPrice}`;
                         document.getElementById(`cart-total-items`).textContent = `${response.cartTotalItems}`;
                         document.getElementById(`cart-total-price`).textContent = `$${response.cartTotalPrice}`;
-                        document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
+                        // document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
                     },
                     error: function (xhr, status, error) {
                         console.error(error); // Handle errors
