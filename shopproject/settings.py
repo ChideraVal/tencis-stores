@@ -15,13 +15,14 @@ import os
 from dotenv import load_dotenv
 
 
-django_secret_key = os.getenv('DJANGO_SECRET_KEY') 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env_path = os.path.join(BASE_DIR, 'shopapp/.env')
 
 load_dotenv(env_path)
+
+django_secret_key = os.getenv('DJANGO_SECRET_KEY') 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -30,7 +31,7 @@ load_dotenv(env_path)
 SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tencis-stores.onrender.com', '.onrender.com', '127.0.0.1']
 
