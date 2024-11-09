@@ -144,7 +144,7 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': str(os.getenv('CLOUDINARY_CLOUD_NAME')),
     'API_KEY': str(os.getenv('CLOUDINARY_API_KEY')),
     'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
-    'SECURE': False
+    'SECURE': True
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
