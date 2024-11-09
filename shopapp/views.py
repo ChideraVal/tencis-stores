@@ -63,6 +63,7 @@ your payment of ₦{order.get_total_price()} was successful and your order ({ord
 
     payment_success_mail.attach_alternative(html_page, 'text/html')
     payment_success_mail.send(fail_silently=False)
+    return None
 
 def activate_order(request, order_id, transaction_id):
     transaction_id = str(transaction_id)
@@ -81,6 +82,8 @@ def activate_order(request, order_id, transaction_id):
             order.active = True
             order.transaction_id = transaction_id
             order.save()
+            email_value = send_verification_email(request, order_id)
+            print(email_value)
             return render(request, 'paymentsuccess.html', {'order': order})
 
         elif str(transaction_data['data']['status']).lower() == 'failed':
