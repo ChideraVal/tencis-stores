@@ -27,10 +27,10 @@
                     <div class="shopbox" id="div-{{ cartproduct.product.id }}">
                         <img src="{{ cartproduct.product.image.url }}" alt="">
                         <p class="itemname">{{ cartproduct.product.name }}</p>
-                        <p class="itemprice">${{ cartproduct.product.price }}</p>
+                        <p class="itemprice">₦{{ cartproduct.product.price }}</p>
                         <p class="itemprice" id="price-{{ cartproduct.id }}"
                             style="font-size: 1em; font-weight: 400; border-top: 1px solid #e4dede; margin-top: .3em; padding-top: .3em;">
-                            ${{ cartproduct.total_price }}</p>
+                            ₦{{ cartproduct.total_price }}</p>
                         <div class="qty">
                             <p class="qtytext" id="qty-{{ cartproduct.id }}">{{ cartproduct.quantity }} unit{{ cartproduct.quantity|pluralize }}</p>
                         </div>
@@ -48,13 +48,13 @@
                         </div>
                         <div class="totaltext">
                             <p>Total Price</p>
-                            <p id="cart-total-price">${{ order.get_total_price }}</p>
+                            <p id="cart-total-price">₦{{ order.get_total_price }}</p>
                         </div>
 
                         <p class="info">
                             Once you click the 'Confirm Order" button below, you will be
                             redirected to our payment page where you will charged the sum total of <span
-                                id="info-price">${{ order.get_total_price }}</span> to
+                                id="info-price">₦{{ order.get_total_price }}</span> to
                             complete your purchase.
                         </p>
                         <button class="pay" onclick="makePayment()">Confirm Order</button>

@@ -8,6 +8,9 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .forms import OrderForm
 import secrets
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
+from django.template.loader import render_to_string
 
 load_dotenv()
 
@@ -40,9 +43,31 @@ def check_transaction_status(request, transaction_id):
         return response.json()
     return None
 
+def send_verification_email(request, order_id):
+    order = Order.objects.get(id=order_id)
+    payment_success_mail = EmailMultiAlternatives(
+                    'Payment Made Successfully!',
+f"""
+Hello {order.first_name},
+
+your payment of ₦{order.get_total_price()} was successful and your order ({order.order_id}) has been confirmed.
+""",
+                    str(settings.DEFAULT_FROM_EMAIL),
+                    [str(order.email)],
+                    reply_to=['pyjamelnoreply@mail.com']
+                )
+                
+    html_page = render_to_string('paymentsuccessmail.html', {
+        "order": order
+    })
+
+    payment_success_mail.attach_alternative(html_page, 'text/html')
+    payment_success_mail.send(fail_silently=False)
+
 def activate_order(request, order_id, transaction_id):
     transaction_id = str(transaction_id)
     order = Order.objects.get(id=order_id)
+
     if order.active:
         return redirect(f'/trackorder/{order_id}')
     

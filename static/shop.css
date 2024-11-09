@@ -746,6 +746,16 @@ div.menupage {
     border: 1px solid #ddd;
 }
 
+.totaltext:first-of-type {
+    border-top-right-radius: .5em;
+    border-top-left-radius: .5em;
+}
+
+.totaltext:last-of-type {
+    border-bottom-right-radius: .5em;
+    border-bottom-left-radius: .5em;
+}
+
 .totaltext p:first-of-type {
     font-weight: bold;
     flex: 1;
@@ -940,9 +950,9 @@ p.info {
     letter-spacing: .03em;
 }
 
-.detaildiv p b {
+/* .detaildiv p b {
     margin-right: .3em;
-}
+} */
 
 .detaildiv p:first-of-type, .orderitem:first-of-type {
     border-top-right-radius: .5em;
@@ -1172,5 +1182,46 @@ p.info {
         font-size: small;
         padding-left: .2em;
         padding-right: .2em;
+    }
+
+    .total, .details {
+        padding: 2em 1em;
+    }
+
+    .total h2, .details h2 {
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .totaltext {
+        padding: 1em 0;
+        border: none;
+        border-top: 1px solid #ddd;
+        border-radius: 0em;
+    }
+
+    .totaltext:last-of-type {
+        border-radius: 0em;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .totaltext:first-of-type {
+        border-radius: 0em;
+    }
+
+    .success {
+        padding: 3em 1em;
+    }
+
+    .detaildiv {
+        padding: 2em 1em;
+    }
+
+    .detaildiv b {
+        display: block;
+    }
+
+    .status {
+        padding: .8em;
     }
 }

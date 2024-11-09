@@ -29,10 +29,10 @@
                         <!-- <p class="new">NEW</p> -->
                         <img src="{{ cartproduct.product.image.url }}" alt="{{ cartproduct.product.image.name }}">
                         <p class="itemname">{{ cartproduct.product.name }}</p>
-                        <p class="itemprice">${{ cartproduct.product.price }}</p>
+                        <p class="itemprice">₦{{ cartproduct.product.price }}</p>
                         <p class="itemprice" id="price-{{ cartproduct.id }}"
                             style="font-size: 1em; font-weight: 400; border-top: 1px solid #e4dede; margin-top: .3em; padding-top: .3em;">
-                            ${{ cartproduct.total_price }}</p>
+                            ₦{{ cartproduct.total_price }}</p>
                         <div class="qty">
                             <button class="decr" data-id="{{ cartproduct.id }}">-</button>
                             <p class="qtytext" id="qty-{{ cartproduct.id }}">{{ cartproduct.quantity }}</p>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="totaltext">
                             <p>Total Price</p>
-                            <p id="cart-total-price">${{ cart.get_total_price }}</p>
+                            <p id="cart-total-price">₦{{ cart.get_total_price }}</p>
                         </div>
                     </div>
 
@@ -82,12 +82,7 @@
                             {% endfor %}
 
                             <div class="form">
-                                <!-- <p class="info">
-                                    Once you click the 'save and checkout" button below, you will be
-                                    redirected to our payment page where you will charged the sum total of <span
-                                        id="info-price">${{ cart.get_total_price }}</span> to
-                                    complete your purchase.
-                                </p> -->
+                                
                                 {% if cart.cartproduct_set.all|length == 0 %}
                                 <input type="submit" id="checkout-button" value="Save and checkout" disabled
                                     style="background-color: #ddd; color: #999;">
@@ -217,7 +212,7 @@
                         $('#cart-count').text(response.cartItemCount);
                         $('#cart-count-2').text(`${response.cartItemCount} product${response.cartItemCount === 1 ? '' : 's'}`);
                         document.getElementById(`cart-total-items`).textContent = `${response.cartTotalItems}`;
-                        document.getElementById(`cart-total-price`).textContent = `$${response.cartTotalPrice}`;
+                        document.getElementById(`cart-total-price`).textContent = `₦${response.cartTotalPrice}`;
                         // document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
                         // Update cart count if necessary
                         document.getElementById(`div-${product_id}`).style.display = 'none';
@@ -246,9 +241,9 @@
 
                     success: function (response) {
                         document.getElementById(`qty-${cartproduct_id}`).textContent = response.cartProductCount;
-                        document.getElementById(`price-${cartproduct_id}`).textContent = `$${response.totalPrice}`;
+                        document.getElementById(`price-${cartproduct_id}`).textContent = `₦${response.totalPrice}`;
                         document.getElementById(`cart-total-items`).textContent = `${response.cartTotalItems}`;
-                        document.getElementById(`cart-total-price`).textContent = `$${response.cartTotalPrice}`;
+                        document.getElementById(`cart-total-price`).textContent = `₦${response.cartTotalPrice}`;
                         // document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
                     },
                     error: function (xhr, status, error) {
@@ -274,9 +269,9 @@
 
                     success: function (response) {
                         document.getElementById(`qty-${cartproduct_id}`).textContent = response.cartProductCount;
-                        document.getElementById(`price-${cartproduct_id}`).textContent = `$${response.totalPrice}`;
+                        document.getElementById(`price-${cartproduct_id}`).textContent = `₦${response.totalPrice}`;
                         document.getElementById(`cart-total-items`).textContent = `${response.cartTotalItems}`;
-                        document.getElementById(`cart-total-price`).textContent = `$${response.cartTotalPrice}`;
+                        document.getElementById(`cart-total-price`).textContent = `₦${response.cartTotalPrice}`;
                         // document.getElementById(`info-price`).textContent = `$${response.cartTotalPrice}`;
                     },
                     error: function (xhr, status, error) {
