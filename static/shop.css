@@ -1177,13 +1177,7 @@ p.info {
     }
 }
 
-@media (max-width: 350px) {
-    .shopbox a {
-        font-size: small;
-        padding-left: .2em;
-        padding-right: .2em;
-    }
-
+@media (max-width: 450px) {
     .total, .details {
         padding: 2em 1em;
     }
@@ -1223,5 +1217,13 @@ p.info {
 
     .status {
         padding: .8em;
+    }
+}
+
+@media (max-width: 350px) {
+    .shopbox a {
+        font-size: small;
+        padding-left: .2em;
+        padding-right: .2em;
     }
 }
