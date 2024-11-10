@@ -90,20 +90,18 @@
         }
 
         .detail {
-            /* display: flex; */
+            margin-bottom: 1em;
+        }
+
+        .detail p, .detail p {
+            text-align: initial;
+        }
+
+        .detail b {
             margin-bottom: 1em;
         }
 
         .detail p {
-            text-align: initial;
-        }
-
-        .detail p:first-of-type {
-            font-weight: bold;
-            margin-bottom: 1em;
-        }
-
-        .detail p:last-of-type {
             color: #444;
             font-size: .9em;
             font-weight: normal;
@@ -174,57 +172,57 @@
                 <p>Order Summary</p>
                 <div class="paydetails">
                     <div class="detail">
-                        <p>Order Id</p>
+                        <b>Order Id</b>
                         <p>{{ order.order_id }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Order Status</p>
+                        <b>Order Status</b>
                         <p>Confirmed</p>
                     </div>
 
                     <div class="detail">
-                        <p>Order Creation Date</p>
+                        <b>Order Creation Date</b>
                         <p>{{ order.create_time.date }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Order Creation Time</p>
+                        <b>Order Creation Time</b>
                         <p>{{ order.create_time.time }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>First name</p>
+                        <b>First name</b>
                         <p>{{ order.first_name }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Last name</p>
+                        <b>Last name</b>
                         <p>{{ order.last_name }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Email</p>
+                        <b>Email</b>
                         <p>{{ order.email }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Phone</p>
+                        <b>Phone</b>
                         <p>{{ order.phone }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Address</p>
+                        <b>Address</b>
                         <p>{{ order.address }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>State</p>
+                        <b>State</b>
                         <p>{{ order.state }}</p>
                     </div>
 
                     <div class="detail">
-                        <p>Zip code</p>
+                        <b>Zip code</b>
                         <p>{{ order.zip_code }}</p>
                     </div>
                 </div>
