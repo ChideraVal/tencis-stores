@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -44,9 +45,7 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=150, null=True, blank=True)
     first_name = models.CharField(max_length=150, null=False, blank=False)
     last_name = models.CharField(max_length=150, null=False, blank=False)
-    email = models.EmailField(max_length=100, unique=True, null=False, blank=False, error_messages={
-        'unique': 'This email address is tied to an existing order, try using a different one!'
-    })
+    email = models.EmailField(max_length=100, null=False, blank=False)
     phone = models.CharField(max_length=11, null=False, blank=False)
     address = models.CharField(max_length=150, null=False, blank=False)
     state = models.CharField(max_length=150, null=False, blank=False)

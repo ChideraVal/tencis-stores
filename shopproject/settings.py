@@ -15,11 +15,11 @@ import os
 from dotenv import load_dotenv
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-env_path = os.path.join(BASE_DIR, 'shopapp/.env')
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env_path = os.path.join(BASE_DIR, 'shopapp/.env')
 load_dotenv(env_path)
 
 django_secret_key = os.getenv('DJANGO_SECRET_KEY')
@@ -31,9 +31,11 @@ django_email_host_password = os.getenv('EMAIL_HOST_PASSWORD')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = False
 
 ALLOWED_HOSTS = ['tencis-stores.onrender.com', '.onrender.com', '127.0.0.1']
@@ -128,7 +130,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 # Email settings
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -137,19 +141,33 @@ EMAIL_HOST_PASSWORD = str(django_email_host_password)
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = f'Tencis Stores <{str(django_email_host_user)}>'
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_URL = 'tencismedia/'
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
+# Media files
+
+MEDIA_URL = 'tencismedia/'
+
+
+#  CSRF cookie settings
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+
+#  Session cookie settings
+
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Strict'
 
 
 # Cloudinary settings
@@ -160,8 +178,8 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
     'SECURE': True
 }
-
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

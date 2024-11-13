@@ -1,183 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Failed - Tencis Stores</title>
+{% block title %}
     {% load static %}
-    {% load checkmodels %}
+    <title>Payment Failed - Tencis Stores</title>
+{% endblock %}
 
-    <link rel="stylesheet" href="{% static 'shop.css' %}">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-</head>
-
-<body>
-    <div class="con">
-        
-        <div class="success">
-            <div class="successinfo">
-                <img src="{% static 'x-button.png' %}" alt="" width="100" height="100">
-                <h2>Payment Failed!</h2>
-                <p>Your payment of ₦{{ order.get_total_price }} was unsuccessful and your order ({{ order.order_id }})
-                    has been declined. Please visit the <a href="/checkout/{{ order.id }}/">order checkout</a> page to restart the payment process. We
-                    also recommend using a different payment method. Need help with your order? Contact support at <a href="mailto:tencissupport@gmail.com">tencissupport@gmail.com</a>
-                </p>
-            </div>
-            
-            <div class="successdetail">
-                <div class="detaildiv">
-                    <h2>Order Summary</h2>
-
-                    <p><b>Order Id</b>: {{ order.order_id }}</p>
-                    <p><b>Order Status</b>: Declined</p>
-                    <p><b>Order Creation Date</b>: {{ order.create_time.date }}</p>
-                    <p><b>Order Creation Time</b>: {{ order.create_time.time }}</p>
-                    <p><b>First name</b>: {{ order.first_name }}</p>
-                    <p><b>Last name</b>: {{ order.last_name }}</p>
-                    <p><b>Email</b>: {{ order.email }}</p>
-                    <p><b>Phone</b>: {{ order.phone }}</p>
-                    <p><b>Address</b>: {{ order.address }}</p>
-                    <p><b>State</b>: {{ order.state }}</p>
-                    <p><b>Zip code</b>: {{ order.zip_code }}</p>
-                </div>
-
-                <div class="detaildiv">
-                    <h2>Order Items</h2>
-                    {% for cartproduct in order.cartproducts.all %}
-                    <div class="orderitem">
-                        <p>{{ cartproduct.product.name }} ({{ cartproduct.quantity }} x ₦{{ cartproduct.product.price }})</p>
-                        <p>₦{{ cartproduct.total_price }}</p>    
-                    </div>
-                    {% endfor %}
-                    <div class="orderitem">
-                        <p style="font-weight: bold;">Total Price</p>
-                        <p>₦{{ order.get_total_price }}</p>
-                    </div>
-                </div>
-            </div>
+{% block body %}
+    <div class="success">
+        <div class="successinfo">
+            <img src="{% static 'x-button.png' %}" alt="" width="100" height="100">
+            <h2>Payment Failed!</h2>
+            <p>Your payment of ₦{{ order.get_total_price }} was unsuccessful and your order ({{ order.order_id }})
+                has been declined. Please visit the <a href="/checkout/{{ order.id }}/">order checkout</a> page to restart the payment process. We
+                also recommend using a different payment method. Need help with your order? Contact support at <a href="mailto:tencissupport@gmail.com">tencissupport@gmail.com</a>
+            </p>
         </div>
         
+        
+        <div class="successdetail">
+            <div class="detaildiv">
+                <h2>Order Summary</h2>
+                <p><b>Order Id: &nbsp;</b>{{ order.order_id }}</p>
+                <p><b>Order Status: &nbsp;</b>Declined</p>
+                <p><b>Order Creation Date: &nbsp;</b>{{ order.create_time.date }}</p>
+                <p><b>Order Creation Time: &nbsp;</b>{{ order.create_time.time }}</p>
+                <p><b>First name: &nbsp;</b>{{ order.first_name }}</p>
+                <p><b>Last name: &nbsp;</b>{{ order.last_name }}</p>
+                <p><b>Email: &nbsp;</b>{{ order.email }}</p>
+                <p><b>Phone: &nbsp;</b>{{ order.phone }}</p>
+                <p><b>Address: &nbsp;</b>{{ order.address }}</p>
+                <p><b>State: &nbsp;</b>{{ order.state }}</p>
+                <p><b>Zip code: &nbsp;</b>{{ order.zip_code }}</p>
+            </div>
 
-        <div class="contact" id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <div class="contcon">
-
-                <div class="contlogo">
-                    <h2>Tencis Stores</h2>
+            <div class="detaildiv">
+                <h2>Order Items</h2>
+                {% for cartproduct in order.cartproducts.all %}
+                <div class="orderitem">
+                    <p>{{ cartproduct.product.name }} <br> ({{ cartproduct.quantity }} x ₦{{ cartproduct.product.price }})</p>
+                    <p>₦{{ cartproduct.total_price }}</p>    
                 </div>
-                <div class="contlinks">
-                    <div class="linkdiv">
-                        <p class="for">contact us</p>
-                        <a href="tel:09130592962">09130592962</a>
-                        <a href="mailto:tcstores@gmail.com">tcstores@gmail.com</a>
-                    </div>
-                    <div class="linkdiv">
-                        <p class="for">follow us</p>
-                        <a href="">Facebook</a>
-                        <a href="">Instagram</a>
-                        <a href="">Threads</a>
-                        <a href="">Tiktok</a>
-                        <a href="">Youtube</a>
-                    </div>
-                    <div class="linkdiv">
-                        <p class="for">Communities</p>
-                        <a href="">Facebook</a>
-                        <a href="">Instagram</a>
-                        <a href="">Discord</a>
-                        <a href="">Whatsapp</a>
-                    </div>
-                </div>
-                <div class="conticons">
-                    <div class="imgcon">
-                        <img src="{% static 'instagram_4494468.png' %}" alt="" width="35" height="35">
-                    </div>
-                    <div class="imgcon">
-                        <img src="{% static 'facebook_2168281.png' %}" alt="" width="35" height="35">
-                    </div>
-                    <div class="imgcon">
-                        <img src="{% static 'twitter_4401454.png' %}" alt="" width="35" height="35">
-                    </div>
+                {% endfor %}
+                <div class="orderitem">
+                    <p style="font-weight: bold;">Total Price</p>
+                    <p>₦{{ order.get_total_price }}</p>
                 </div>
             </div>
         </div>
-
     </div>
+{% endblock %}
 
-    <div class="menu">
-        <div class="logo">
-            <h1>Tencis Stores</h1>
-        </div>
-        <div class="links">
-            <a href="/#">Home</a>
-            <a href="/#shop">Shop</a>
-            <a href="/#about">About</a>
-            <a href="/#reviews">Reviews</a>
-            <a href="/#contact">Contact</a>
-            <button id="menu-button">Menu</button>
-        </div>
-    </div>
-
-    <div class="banner">
-        <p>Created by <a href="https://www.tencis.online">Tencis Designs</a> </p>
-    </div>
-
-    <div class="menubox" id="menu-element">
-        <div class="menupage">
-            <h3>Menu</h3>
-            <button id="home-button">Home</button>
-            <button id="shop-button">Shop</button>
-            <button id="about-button">About</button>
-            <button id="reviews-button">Reviews</button>
-            <button id="contact-button">Contact</button>
-            <button id="close-button">Close</button>
-        </div>
-    </div>
-
-    <script>
-        let menuButton = document.getElementById('menu-button');
-        let menuElement = document.getElementById('menu-element');
-        let homeDiv = document.getElementById('home');
-        let shopDiv = document.getElementById('shop');
-        let aboutDiv = document.getElementById('about');
-        let reviewsDiv = document.getElementById('reviews');
-        let contactDiv = document.getElementById('contact');
-        let homeButton = document.getElementById('home-button');
-        let shopButton = document.getElementById('shop-button');
-        let aboutButton = document.getElementById('about-button');
-        let reviewsButton = document.getElementById('reviews-button');
-        let contactButton = document.getElementById('contact-button');
-        let closeButton = document.getElementById('close-button');
-
-        menuButton.onclick = () => {
-            menuElement.style.display = 'flex';
-        }
-
-        closeButton.onclick = () => {
-            menuElement.style.display = 'none';
-        }
-
-        homeButton.onclick = () => {
-            open('/#', '_parent')
-        }
-
-        aboutButton.onclick = () => {
-            open('/#about', '_parent')
-        }
-
-        shopButton.onclick = () => {
-            open('/#shop', '_parent')
-        }
-
-        reviewsButton.onclick = () => {
-            open('/#reviews', '_parent')
-        }
-
-        contactButton.onclick = () => {
-            contactDiv.scrollIntoView({ behavior: 'smooth' })
-            menuElement.style.display = 'none';
-        }
-    </script>
-
-</body>
-
-</html>
+{% block scripts %}
+    <script src="{% static 'payment.js' %}"></script>
+{% endblock %}
