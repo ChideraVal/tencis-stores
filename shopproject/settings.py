@@ -36,9 +36,9 @@ SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['store.tencis.online', '.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['store.tencis.online']
 
 
 # Application definition

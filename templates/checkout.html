@@ -57,7 +57,7 @@
                     <form action="/cart/" method="post">
                         {% csrf_token %}
                         <input type="text" value="{{ order.get_total_price }}" id="amount" disabled hidden>
-                        <input type="text" value="{{ order.order_id }}" id="order_id" disabled hidden>
+                        <input type="text" value="{{ order.id }}" id="order_id" disabled hidden>
                         <div class="form">
                             <p>First name</p>
                             <input type="text" value="{{ order.first_name }}" id="first_name" disabled>
