@@ -56,24 +56,26 @@
 
                     <form action="/cart/" method="post">
                         {% csrf_token %}
+                        <input type="text" value="{{ order.get_total_price }}" id="amount" disabled hidden>
+                        <input type="text" value="{{ order.order_id }}" id="order_id" disabled hidden>
                         <div class="form">
                             <p>First name</p>
-                            <input type="text" value="{{ order.first_name }}" disabled>
+                            <input type="text" value="{{ order.first_name }}" id="first_name" disabled>
                         </div>
 
                         <div class="form">
                             <p>Last name</p>
-                            <input type="text" value="{{ order.last_name }}" disabled>
+                            <input type="text" value="{{ order.last_name }}" id="last_name" disabled>
                         </div>
 
                         <div class="form">
                             <p>Email</p>
-                            <input type="text" value="{{ order.email }}" disabled>
+                            <input type="text" value="{{ order.email }}" id="email" disabled>
                         </div>
 
                         <div class="form">
                             <p>Phone</p>
-                            <input type="text" value="{{ order.phone }}" disabled>
+                            <input type="text" value="{{ order.phone }}" id="phone" disabled>
                         </div>
 
                         <div class="form">
@@ -90,7 +92,6 @@
                             <p>Zip code</p>
                             <input type="text" value="{{ order.zip_code }}" disabled>
                         </div>
-                    
                     </form>
 
                 </div>

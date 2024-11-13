@@ -42,25 +42,33 @@ contactButton.onclick = () => {
     menuElement.style.display = 'none';
 }
 
+
 // Make payment on flutterwave
 function makePayment() {
+    let orderIdValue = document.getElementById('order_id').value;
+    let amountValue = document.getElementById('amount').value;
+    let emailValue = document.getElementById('email').value;
+    let phoneValue = document.getElementById('phone').value;
+    let firstNameValue = document.getElementById('first_name').value;
+    let lastNameValue = document.getElementById('last_name').value;
+
     FlutterwaveCheckout({
         public_key: "FLWPUBK-4665a5bfdd9fe8535fa8c74f0d845b09-X",
-        tx_ref: "{{ order.order_id }}",
-        amount: Number("{{ order.get_total_price }}"),
+        tx_ref: `${orderIdValue}`,
+        amount: Number(amountValue),
         currency: "NGN",
         payment_options: "card, mobilemoneyghana, ussd",
         customer: {
-            email: "{{ order.email }}",
-            phone_number: Number("{{ order.phone }}"),
-            name: "{{ order.first_name }} {{ order.last_name }}",
+            email: `${emailValue}`,
+            phone_number: Number(phoneValue),
+            name: `${firstNameValue} ${lastNameValue}`,
         },
         customizations: {
             title: "Tencis Stores",
             description: "Pay now to complete your purchase and verify your order.",
         },
         callback: function (payment) {
-            open(`https://tencis-stores.onrender.com/verify/{{ order.id }}/${payment.transaction_id}`, '_parent')
+            open(`https://store.tencis.online/verify/{{ order.id }}/${payment.transaction_id}`, '_parent')
         },
     });
 }
