@@ -36,9 +36,9 @@ SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 APPEND_SLASH = True
-ALLOWED_HOSTS = ['stores.tencis.online', 'stale-nicolea-tencis-13520373.koyeb.app']
+ALLOWED_HOSTS = ['stores.tencis.online', 'zany-mable-tencisorg-0466ac0d.koyeb.app']
 
 
 # Application definition
