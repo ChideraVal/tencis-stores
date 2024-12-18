@@ -57,7 +57,7 @@ function makePayment() {
         tx_ref: `${orderIdValue}`,
         amount: Number(amountValue),
         currency: "NGN",
-        payment_options: "card, mobilemoneyghana, ussd",
+        payment_options: "card, ussd, banktransfer, account, internetbanking, nqr, applepay, googlepay, enaira, opay",
         customer: {
             email: `${emailValue}`,
             phone_number: Number(phoneValue),
