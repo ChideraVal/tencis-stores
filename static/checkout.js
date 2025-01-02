@@ -68,7 +68,7 @@ function makePayment() {
             description: "Pay now to complete your purchase and verify your order.",
         },
         callback: function (payment) {
-            open(`https://tencis-stores-9bfx.onrender.com/verify/${orderIdValue}/${payment.transaction_id}/`, '_parent')
+            open(`https://store.tencis.online/verify/${orderIdValue}/${payment.transaction_id}/`, '_parent')
         },
     });
 }

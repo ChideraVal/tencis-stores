@@ -38,7 +38,7 @@ SECRET_KEY = str(django_secret_key)
 
 DEBUG = False
 APPEND_SLASH = True
-ALLOWED_HOSTS = ['tencis-stores-9bfx.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['store.tencis.online', '127.0.0.1']
 
 
 
