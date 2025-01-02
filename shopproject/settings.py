@@ -36,13 +36,10 @@ SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 APPEND_SLASH = True
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['store.tencis.online', '127.0.0.1']
-=======
-ALLOWED_HOSTS = ['stores.tencis.online', 'tencis.koyeb.app']
->>>>>>> 0b4eb4018144ae5b5cf80b69f92317c074c4f20b
+ALLOWED_HOSTS = ['tencis-stores-9bfx.onrender.com', '127.0.0.1']
+
 
 
 # Application definition
