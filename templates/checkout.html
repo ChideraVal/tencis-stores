@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% load static %}
+    <title>Checkout - Tencis Stores</title>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="shop" id="shop" style="padding-top: .7em;" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="ctg">
+            <div class="ctgheader">
+                <h2>Review Order</h2>
+            </div>
+            <p id="cart-count-2">{{ order.cartproducts.all.count }} product{{ order.cartproducts.all.count|pluralize }}</p>
+            <div class="shopcon">
+                {% for cartproduct in order.cartproducts.all %}
+                <div class="shopbox" id="div-{{ cartproduct.product.id }}">
+                    <img src="{{ cartproduct.product.image.url }}" alt="">
+                    <p class="itemname">{{ cartproduct.product.name }}</p>
+                    <p class="itemprice">₦{{ cartproduct.product.price }}</p>
+                    <p class="itemprice" id="price-{{ cartproduct.id }}"
+                        style="font-size: 1em; font-weight: 400; border-top: 1px solid #e4dede; margin-top: .3em; padding-top: .3em;">
+                        ₦{{ cartproduct.total_price }}</p>
+                    <div class="qty">
+                        <p class="qtytext" id="qty-{{ cartproduct.id }}">{{ cartproduct.quantity }} unit{{ cartproduct.quantity|pluralize }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="checkout">
+
+                <div class="total">
+                    <h2>Confirm Order</h2>
+                    <div class="totaltext">
+                        <p>Total Items</p>
+                        <p id="cart-total-items">{{ order.get_total_items }}</p>
+                    </div>
+                    <div class="totaltext">
+                        <p>Total Price</p>
+                        <p id="cart-total-price">₦{{ order.get_total_price }}</p>
+                    </div>
+
+                    <p class="info">
+                        Once you click the 'Confirm Order" button below, you will be
+                        redirected to our payment page where you will charged the sum total of <span
+                            id="info-price">₦{{ order.get_total_price }}</span> to
+                        complete your purchase.
+                    </p>
+                    <button class="pay" onclick="makePayment()">Confirm Order</button>
+                </div>
+
+                <div class="details">
+                    <h2>Shipping Information</h2>
+
+                    <form action="/cart/" method="post">
+                        {% csrf_token %}
+                        <input type="text" value="{{ order.get_total_price }}" id="amount" disabled hidden>
+                        <input type="text" value="{{ order.id }}" id="order_id" disabled hidden>
+                        <div class="form">
+                            <p>First name</p>
+                            <input type="text" value="{{ order.first_name }}" id="first_name" disabled>
+                        </div>
+
+                        <div class="form">
+                            <p>Last name</p>
+                            <input type="text" value="{{ order.last_name }}" id="last_name" disabled>
+                        </div>
+
+                        <div class="form">
+                            <p>Email</p>
+                            <input type="text" value="{{ order.email }}" id="email" disabled>
+                        </div>
+
+                        <div class="form">
+                            <p>Phone</p>
+                            <input type="text" value="{{ order.phone }}" id="phone" disabled>
+                        </div>
+
+                        <div class="form">
+                            <p>Address</p>
+                            <input type="text" value="{{ order.address }}" disabled>
+                        </div>
+
+                        <div class="form">
+                            <p>State</p>
+                            <input type="text" value="{{ order.state }}" disabled>
+                        </div>
+
+                        <div class="form">
+                            <p>Zip code</p>
+                            <input type="text" value="{{ order.zip_code }}" disabled>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'checkout.js' %}"></script>
+{% endblock %}

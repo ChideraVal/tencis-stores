@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            font-style: normal;
+        }
+
+        
+        div.page {
+            width: 40%;
+            margin: 3em auto;
+            background-color: #f3f3f3;
+        }
+
+        .header {
+            background-color: black;
+            padding: 1em;
+            box-sizing: border-box;
+        }
+
+        .header h1 {
+            font-family: "Satisfy", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            text-align: center;
+        }
+
+        .content {
+            padding: 1em;
+            box-sizing: border-box;
+        }
+
+        .payintro {
+            margin-bottom: 1em;
+        }
+
+        .payheader, .payintro p, .payintro h2 {
+            text-align: center;
+        }
+
+        .payintro p {
+            font-size: 1.1em;
+            color: #444;
+            margin-top: .5em;
+        }
+
+        .payintro h2 {
+            font-size: 2.2em;
+            color: rgb(43, 41, 41);
+            margin-top: .5em;
+        }
+
+        a {
+            text-decoration: underline;
+            color: black;
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+
+        .payinfo {
+            border-top: 1px solid #ddd;
+            padding-top: 1em;
+            box-sizing: border-box;
+        }
+
+        .payinfo p {
+            font-size: 1.1em;
+            color: black;
+            margin-top: .5em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .paydetails {
+            margin-top: .5em;
+        }
+
+        .detail {
+            margin-bottom: 1em;
+        }
+
+        .detail p, .detail p {
+            text-align: initial;
+        }
+
+        .detail b {
+            margin-bottom: 1em;
+        }
+
+        .detail p {
+            color: #444;
+            font-size: .96em;
+            font-weight: normal;
+        }
+
+        .help {
+            text-align: center;
+            font-size: .85em;
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+        
+        .small {
+            font-size: small;
+            color: rgb(146, 144, 144);
+            border-top: 1px solid #ddd;
+            padding-top: .5em;
+            box-sizing: border-box;
+        }
+
+        div.logo {
+            display: flex;
+            align-items: center;
+        }
+
+        div.logo p.small {
+            color: rgb(146, 144, 144);
+            letter-spacing: .03em;
+            margin-top: 1em;
+            border: none;
+        }
+
+        @media (max-width: 1000px) {
+            div.page {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            div.page {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <h1>Tencis Stores</h1>
+        </div>
+
+        <div class="content">
+
+            <div class="payintro">
+                <h3 class="payheader">
+                    Payment Successful!
+                </h3>
+                <p>
+                    Hello {{ order.first_name }}, your payment of ₦{{ order.get_total_price }} was successful and your order ({{ order.order_id }}) has been confirmed.
+                    Click <a href="https://tencis.koyeb.app/trackorder/{{ order.id }}/">here</a> to track your order.
+                </p>
+
+                <h2>₦{{ order.get_total_price }}</h2>
+            </div>
+            
+            <div class="payinfo">
+                <p>Order Summary</p>
+                <div class="paydetails">
+                    <div class="detail">
+                        <b>Order Id</b>
+                        <p>{{ order.order_id }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Order Status</b>
+                        <p>Confirmed</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Order Creation Date</b>
+                        <p>{{ order.create_time.date }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Order Creation Time</b>
+                        <p>{{ order.create_time.time }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>First name</b>
+                        <p>{{ order.first_name }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Last name</b>
+                        <p>{{ order.last_name }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Email</b>
+                        <p>{{ order.email }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Phone</b>
+                        <p>{{ order.phone }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Address</b>
+                        <p>{{ order.address }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>State</b>
+                        <p>{{ order.state }}</p>
+                    </div>
+
+                    <div class="detail">
+                        <b>Zip code</b>
+                        <p>{{ order.zip_code }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="help">
+                Need help with your order? Contact support at <a href="mailto:tencissupport@gmail.com">tencissupport@gmail.com</a>
+            </p>
+
+            <p class="small">
+                You received this mandatory email service announcement to update you about important changes to your
+                Tencis order.
+            </p>
+
+            <div class="logo">
+                <p class="small">Tencis Online Services</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% load static %}
+    {% load checkmodels %}
+    <title>All Products - Tencis Stores</title>
+{% endblock %}
+
+{% block body %}
+    <div class="shop" id="shop" style="padding-top: .7em;" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="ctg">
+            <div class="ctgheader">
+                <h2>All Products</h2>
+            </div>
+
+            <div class="shopcon">
+                {% for product in products %}
+                <div class="shopbox">
+                    <img src="{{ product.image.url }}" alt="">
+                    <p class="itemname">{{ product.name }}</p>
+                    <p class="itemprice">₦{{ product.price }}</p>
+                    {% if cart %}
+                    {% if cart|checkincart:product %}
+                    <a class="add-to-cart" data-id="{{ product.id }}" style="background-color: #ddd; color: black;">Added To
+                        Cart</a>
+                    {% else %}
+                    <a class="add-to-cart" data-id="{{ product.id }}">Add To Cart</a>
+                    {% endif %}
+                    {% else %}
+                    <a class="add-to-cart" data-id="{{ product.id }}">Add To Cart</a>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <p>No products available!</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block cart %}
+    <div class="cart">
+        <a href="/cart/">
+            <div class="cartcon">
+                <img src="{% static 'shopping-cart.png' %}" alt="" width="30" height="30">
+                <p id="cart-count">{{ cart.cartproduct_set.all|length }}</p>
+            </div>
+        </a>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'productlist.js' %}"></script>
+{% endblock %}

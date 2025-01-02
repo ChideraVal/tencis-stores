@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'shop.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> -->
+</head>
+
+<body>
+    <div class="con">
+        {% block body %}
+        {% endblock %}
+        <div class="contact" id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="contcon">
+
+                <div class="contlogo">
+                    <h2>Tencis Stores</h2>
+                </div>
+                <div class="contlinks">
+                    <div class="linkdiv">
+                        <p class="for">contact us</p>
+                        <a href="tel:09130592962">09130592962</a>
+                        <a href="mailto:tcstores@gmail.com">tcstores@gmail.com</a>
+                    </div>
+                    <div class="linkdiv">
+                        <p class="for">follow us</p>
+                        <a href="">Facebook</a>
+                        <a href="">Instagram</a>
+                        <a href="">Threads</a>
+                        <a href="">Tiktok</a>
+                        <a href="">Youtube</a>
+                    </div>
+                    <div class="linkdiv">
+                        <p class="for">Communities</p>
+                        <a href="">Facebook</a>
+                        <a href="">Instagram</a>
+                        <a href="">Discord</a>
+                        <a href="">Whatsapp</a>
+                    </div>
+                </div>
+                <div class="conticons">
+                    <div class="imgcon">
+                        <img src="{% static 'instagram_4494468.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="imgcon">
+                        <img src="{% static 'facebook_2168281.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="imgcon">
+                        <img src="{% static 'twitter_4401454.png' %}" alt="" width="35" height="35">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div class="logo">
+            <h1>Tencis Stores</h1>
+        </div>
+        <div class="links">
+            <a href="/#">Home</a>
+            <a href="/#shop">Shop</a>
+            <a href="/#about">About</a>
+            <a href="/#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+            <button id="menu-button">Menu</button>
+        </div>
+    </div>
+
+    {% block cart %}
+    {% endblock %}
+
+    <!-- <div class="banner">
+        <p>Created by <a href="https://www.tencis.online" target="_blank">Tencis Designs</a> </p>
+    </div> -->
+
+    <div class="menubox" id="menu-element">
+        <div class="menupage">
+            <h3>Menu</h3>
+            <button id="home-button">Home</button>
+            <button id="shop-button">Shop</button>
+            <button id="about-button">About</button>
+            <button id="reviews-button">Reviews</button>
+            <button id="contact-button">Contact</button>
+            <button id="close-button">Close</button>
+        </div>
+    </div>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

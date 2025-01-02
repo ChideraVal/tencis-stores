@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% load static %}
+    <title>Processing Payment - Tencis Stores</title>
+{% endblock %}
+
+{% block body %}
+    <div class="success">
+        <div class="successinfo">
+            <img src="{% static 'pending.png' %}" alt="" width="100" height="100">
+            <h2>Processing your payment...</h2>
+            <p>Your payment of ₦{{ order.get_total_price }} is pending and your order ({{ order.order_id }})
+                is being processed. Please <a href="">refresh</a> the page to re-check the current payment status.
+                Need help with your order? Contact support at <a href="mailto:tencissupport@gmail.com">tencissupport@gmail.com</a>
+            </p>
+        </div>
+        
+        <div class="successdetail">
+            <div class="detaildiv">
+                <h2>Order Summary</h2>
+                <p><b>Order Id: &nbsp;</b>{{ order.order_id }}</p>
+                <p><b>Order Status: &nbsp;</b>Processing</p>
+                <p><b>Order Creation Date: &nbsp;</b>{{ order.create_time.date }}</p>
+                <p><b>Order Creation Time: &nbsp;</b>{{ order.create_time.time }}</p>
+                <p><b>First name: &nbsp;</b>{{ order.first_name }}</p>
+                <p><b>Last name: &nbsp;</b>{{ order.last_name }}</p>
+                <p><b>Email: &nbsp;</b>{{ order.email }}</p>
+                <p><b>Phone: &nbsp;</b>{{ order.phone }}</p>
+                <p><b>Address: &nbsp;</b>{{ order.address }}</p>
+                <p><b>State: &nbsp;</b>{{ order.state }}</p>
+                <p><b>Zip code: &nbsp;</b>{{ order.zip_code }}</p>
+            </div>
+
+            <div class="detaildiv">
+                <h2>Order Items</h2>
+                {% for cartproduct in order.cartproducts.all %}
+                <div class="orderitem">
+                    <p>{{ cartproduct.product.name }} <br> ({{ cartproduct.quantity }} x ₦{{ cartproduct.product.price }})</p>
+                    <p>₦{{ cartproduct.total_price }}</p>    
+                </div>
+                {% endfor %}
+                <div class="orderitem">
+                    <p style="font-weight: bold;">Total Price</p>
+                    <p>₦{{ order.get_total_price }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'payment.js' %}"></script>
+{% endblock %}

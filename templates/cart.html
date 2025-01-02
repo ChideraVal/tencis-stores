@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% load static %}
+    {% load checkmodels %}
+    <title>Cart - Tencis Stores</title>
+{% endblock %}
+
+{% block body %}
+    <div class="shop" id="shop" style="padding-top: .7em;" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="ctg">
+            <div class="ctgheader">
+                <h2>My Cart</h2>
+                <a href="/products/">Add products</a>
+            </div>
+            <p id="cart-count-2">{{ cart.cartproduct_set.all.count }} products</p>
+            <div class="shopcon">
+                {% for cartproduct in cart.cartproduct_set.all %}
+                <div class="shopbox" id="div-{{ cartproduct.product.id }}">
+                    <img src="{{ cartproduct.product.image.url }}" alt="{{ cartproduct.product.image.name }}">
+                    <p class="itemname">{{ cartproduct.product.name }}</p>
+                    <p class="itemprice">₦{{ cartproduct.product.price }}</p>
+                    <p class="itemprice" id="price-{{ cartproduct.id }}"
+                        style="font-size: 1em; font-weight: 400; border-top: 1px solid #e4dede; margin-top: .3em; padding-top: .3em;">
+                        ₦{{ cartproduct.total_price }}</p>
+                    <div class="qty">
+                        <button class="decr" data-id="{{ cartproduct.id }}">-</button>
+                        <p class="qtytext" id="qty-{{ cartproduct.id }}">{{ cartproduct.quantity }}</p>
+                        <button class="incr" data-id="{{ cartproduct.id }}">+</button>
+                    </div>
+                    {% if cart %}
+                    {% if cart|checkincart:cartproduct.product %}
+                    <a class="add-to-cart" data-id="{{ cartproduct.product.id }}"
+                        style="background-color: #ddd; color: red;">Remove</a>
+                    {% else %}
+                    <a class="add-to-cart" data-id="{{ cartproduct.product.id }}">Add To Cart</a>
+                    {% endif %}
+                    {% else %}
+                    <a class="add-to-cart" data-id="{{ cartproduct.product.id }}">Add To Cart</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="checkout">
+
+                <div class="total">
+                    <h2>Cart totals</h2>
+                    <div class="totaltext">
+                        <p>Total Items</p>
+                        <p id="cart-total-items">{{ cart.get_total_items }}</p>
+                    </div>
+                    <div class="totaltext">
+                        <p>Total Price</p>
+                        <p id="cart-total-price">₦{{ cart.get_total_price }}</p>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <h2>Shipping Information</h2>
+
+                    <form action="/cart/" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form">
+                            <p>{{ field.label }}</p>
+                            {{ field }}
+                            {% for error in field.errors %}
+                            <p class="error">{{ error }}</p>
+                            {% endfor %}
+                            {% if field.label == 'Email' and form.email_error %}
+                            <p class="error">{{ form.email_error }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                        <div class="form">
+                            
+                            {% if cart.cartproduct_set.all|length == 0 %}
+                            <input type="submit" id="checkout-button" value="Save and checkout" disabled
+                                style="background-color: #ddd; color: #999;">
+                            {% else %}
+                            <input type="submit" id="checkout-button" value="Save and checkout">
+                            {% endif %}
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block cart %}
+    <div class="cart">
+        <a href="/cart/">
+            <div class="cartcon">
+                <img src="{% static 'shopping-cart.png' %}" alt="" width="30" height="30">
+                <p id="cart-count">{{ cart.cartproduct_set.all|length }}</p>
+            </div>
+        </a>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'cart.js' %}"></script>
+{% endblock %}

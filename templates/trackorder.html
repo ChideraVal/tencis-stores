@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% load static %}
+    <title>Track Order - Tencis Stores</title>
+{% endblock %}
+
+{% block body %}
+    <div class="success">
+        <div class="successinfo">
+            <img src="{% static 'tracking_17818197.png' %}" alt="" width="100" height="100">
+            <h2>Track Your Order</h2>
+            <p>Welcome to your order tracking page. Here, you can track the current status of your order, from the moment
+                you placed it until the moment it gets delivered.
+                Need help with your order? Contact support at <a href="mailto:tencissupport@gmail.com">tencissupport@gmail.com</a>
+            </p>
+        </div>
+        
+        <div class="successdetail">
+            <div class="detaildiv">
+                <h2>Order Summary</h2>
+                <p><b>Order Id: &nbsp;</b>{{ order.order_id }}</p>
+                <p><b>Order Status: &nbsp;</b>Confirmed</p>
+                <p><b>Order Creation Date: &nbsp;</b>{{ order.create_time.date }}</p>
+                <p><b>Order Creation Time: &nbsp;</b>{{ order.create_time.time }}</p>
+                <p><b>First name: &nbsp;</b>{{ order.first_name }}</p>
+                <p><b>Last name: &nbsp;</b>{{ order.last_name }}</p>
+                <p><b>Email: &nbsp;</b>{{ order.email }}</p>
+                <p><b>Phone: &nbsp;</b>{{ order.phone }}</p>
+                <p><b>Address: &nbsp;</b>{{ order.address }}</p>
+                <p><b>State: &nbsp;</b>{{ order.state }}</p>
+                <p><b>Zip code: &nbsp;</b>{{ order.zip_code }}</p>
+            </div>
+
+            <div class="detaildiv">
+                <h2>Tracking History</h2>
+                <div class="status">
+                    <div class="checkicon">
+                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                    </div>
+                    <div class="statustext">
+                        <p>Order Created</p>
+                        <p>{{ order.create_time }}</p>
+                    </div>
+                    <div class="statusstate">
+                        <p class="complete">Completed</p>
+                    </div>
+                </div>
+                <div class="status">
+                    <div class="checkicon">
+                        {% if order.active %}
+                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        {% else %}
+                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        {% endif %}
+                    </div>
+                    <div class="statustext">
+                        <p>Order Confirmed</p>
+                        {% if order.active %}
+                        <p>{{ order.create_time }}</p>
+                        {% else %}
+                        <p>pending...</p>
+                        {% endif %}
+                    </div>
+                    <div class="statusstate">
+                        {% if order.active %}
+                        <p class="complete">Completed</p>
+                        {% else %}
+                        <p>Pending</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="status">
+                    <div class="checkicon">
+                        {% if order.processed %}
+                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        {% else %}
+                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        {% endif %}
+                    </div>
+                    <div class="statustext">
+                        <p>Order Processed</p>
+                        {% if order.processed %}
+                        <p>{{ order.processed_time }}</p>
+                        {% else %}
+                        <p>pending...</p>
+                        {% endif %}
+                    </div>
+                    <div class="statusstate">
+                        {% if order.processed %}
+                        <p class="complete">Completed</p>
+                        {% else %}
+                        <p>Pending</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="status">
+                    <div class="checkicon">
+                        {% if order.shipped %}
+                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        {% else %}
+                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        {% endif %}
+                    </div>
+                    <div class="statustext">
+                        <p>Order Shipped</p>
+                        {% if order.shipped %}
+                        <p>{{ order.shipped_time }}</p>
+                        {% else %}
+                        <p>pending...</p>
+                        {% endif %}
+                    </div>
+                    <div class="statusstate">
+                        {% if order.shipped %}
+                        <p class="complete">Completed</p>
+                        {% else %}
+                        <p>Pending</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="status">
+                    <div class="checkicon">
+                        {% if order.delivered %}
+                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        {% else %}
+                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        {% endif %}
+                    </div>
+                    <div class="statustext">
+                        <p>Order Delivered</p>
+                        {% if order.delivered %}
+                        <p>{{ order.delivered_time }}</p>
+                        {% else %}
+                        <p>pending...</p>
+                        {% endif %}
+                    </div>
+                    <div class="statusstate">
+                        {% if order.delivered %}
+                        <p class="complete">Completed</p>
+                        {% else %}
+                        <p>Pending</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'payment.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% load static %}
+    <title>Tencis Stores</title>
+{% endblock %}
+
+{% block body %}
+    <div class="home" id="#">
+        <div class="text">
+            <h1>Time telling at it's finest.</h1>
+            <p>Extraordinary and redefined watches
+                <br>
+                at your fingertips.
+            </p>
+            <a href="#shop">Shop Now</a>
+        </div>
+        <div class="image">
+            <img src="{% static 'watchimg.png' %}" alt="">
+        </div>
+    </div>
+
+    <div class="ft">
+        <div class="ftcon">
+            <div class="ftconsub">
+                <div class="ftbox">
+                    <img src="{% static 'dashboard.png' %}" alt="">
+                    <h2>Performance</h2>
+                    <p>Engineered for precision and durability, this watch delivers consistent, reliable timekeeping
+                        to keep you on track every day.</p>
+                </div>
+                <div class="ftbox">
+                    <img src="{% static 'calendar.png' %}" alt="">
+                    <h2>Time and date</h2>
+                    <p>Effortlessly keep track of time and date with a crisp, easy-to-read display that enhances
+                        everyday convenience.</p>
+                </div>
+            </div>
+            <div class="ftimg">
+                <img src="{% static 'white-sports-watch-600x600.png' %}" alt="">
+            </div>
+            <div class="ftconsub">
+                <div class="ftbox">
+                    <img src="{% static 'batteryv.png' %}" alt="">
+                    <h2>Long battery life</h2>
+                    <p>Enjoy extended usage with a long-lasting battery that powers your watch for days without
+                        frequent recharging.</p>
+                </div>
+                <div class="ftbox">
+                    <img src="{% static 'price-tag.png' %}" alt="">
+                    <h2>Affordable price</h2>
+                    <p>As for the pricing, get the perfect balance of style, functionality, and quality at a price
+                        point that's easy on your wallet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shop" id="shop" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="ctg">
+            <div class="ctgheader">
+                <h2>Our Products</h2>
+                <a href="/products/">see all</a>
+            </div>
+
+            <div class="shopcon">
+                {% for product in products %}
+                <div class="shopbox">
+                    <img src="{{ product.image.url }}" alt="">
+                    <p class="itemname">{{ product.name }}</p>
+                    <p class="itemprice">₦{{ product.price }}</p>
+                </div>
+                {% empty %}
+                <p>No products available!</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="about featurerev" id="about" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="text">
+            <h1>About Us</h1>
+            <p>
+                At Tencis Stores, we believe that a great watch is more than just a timepiece—it's a reflection
+                of your style and personality. Our collection combines precision, durability, and elegance to offer
+                watches that suit every occasion. Whether you're looking for performance, long battery life, or
+                affordable luxury, our watches deliver on all fronts.
+            </p>
+
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="image">
+            <img src="{% static 'navy-blue-watch-600x600.png' %}" alt="">
+        </div>
+    </div>
+
+    <div class="reviews" id="reviews" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="revhead">
+            <p>Customer Reviews</p>
+        </div>
+
+        <div class="revcon">
+            <div class="revbox">
+                <div class="author">
+                    <div class="authorimg">
+                        <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    </div>
+                    <div class="authordesc">
+                        <p class="name">Stella Smith</p>
+                        <p class="state">Lagos</p>
+                    </div>
+                </div>
+                <p>"I’m blown away by the quality of my watch. It looks and feels premium but didn’t cost me a
+                    fortune. The performance is top-notch, and I love that the battery lasts for days. Highly
+                    recommend if you're looking for both style and functionality!"</p>
+            </div>
+
+            <div class="revbox">
+                <div class="author">
+                    <div class="authorimg">
+                        <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    </div>
+                    <div class="authordesc">
+                        <p class="name">Aisha Barakat</p>
+                        <p class="state">Ibadan</p>
+                    </div>
+                </div>
+                <p>"I wasn’t sure what to expect for the price, but this watch has been fantastic. The timekeeping
+                    is incredibly accurate, and the design is sleek and modern. It’s become my go-to accessory, and
+                    I get compliments all the time. Great value for the money!"</p>
+            </div>
+
+            <div class="revbox">
+                <div class="author">
+                    <div class="authorimg">
+                        <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    </div>
+                    <div class="authordesc">
+                        <p class="name">Solomon Adeyemi</p>
+                        <p class="state">Abuja</p>
+                    </div>
+                </div>
+                <p>"I love how this watch blends elegance with practicality. It’s not only beautiful but also
+                    reliable. The time and date display is easy to read, and the battery life is impressive. I’ve
+                    had it for months now, and it’s still going strong."</p>
+            </div>
+
+            <div class="revbox">
+                <div class="author">
+                    <div class="authorimg">
+                        <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    </div>
+                    <div class="authordesc">
+                        <p class="name">Jessica Okeke</p>
+                        <p class="state">Enugu</p>
+                    </div>
+                </div>
+                <p>"This watch fits perfectly into my daily routine. It’s comfortable, lightweight, and I never have
+                    to worry about charging it constantly. The affordable price made it a great buy, but the quality
+                    makes me feel like I got something much more expensive!"</p>
+            </div>
+
+            <div class="revbox">
+                <div class="author">
+                    <div class="authorimg">
+                        <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    </div>
+                    <div class="authordesc">
+                        <p class="name">Stanley Williams</p>
+                        <p class="state">Jos</p>
+                    </div>
+                </div>
+                <p>"As someone always on the move, I needed a watch I could rely on, and this one delivers. It’s
+                    durable, stylish, and the long battery life is a lifesaver. I don’t have to worry about it
+                    running out of power when I need it most."
+                </p>
+            </div>
+
+            <div class="revbox">
+                <div class="author">
+                    <div class="authorimg">
+                        <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    </div>
+                    <div class="authordesc">
+                        <p class="name">Chinaza MaryAnn</p>
+                        <p class="state">Lagos</p>
+                    </div>
+                </div>
+                <p>"This watch has quickly become one of my favorite accessories. It performs flawlessly, keeping
+                    time with precision, and I love the sleek design. It’s perfect for both casual and formal
+                    settings. I’m genuinely impressed with how well it holds up to daily wear."</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'navigation.js' %}"></script>
+{% endblock %}
