@@ -2,6 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('quiz/', views.quiz),
+    path('send/', views.send_quiz),
+    path('getposts/', views.get_posts),
+    path('createpost/', views.create_post),
+    path('editpost/<int:id>/', views.edit_post),
+    path('deletepost/<int:id>/', views.delete_post),
     path('', views.home),
     path('products/', views.product_list),
     path('add-to-cart/<int:product_id>/', views.add_to_cart),

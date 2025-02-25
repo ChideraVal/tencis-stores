@@ -2,6 +2,10 @@ from django.contrib import admin
 from .models import *
 
 
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'content']
+
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'price']
 
@@ -21,4 +25,5 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartProduct, CartProductAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Post, PostAdmin)
 

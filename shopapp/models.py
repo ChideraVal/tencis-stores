@@ -5,7 +5,9 @@ from django.utils import timezone
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(blank=False, null=True, upload_to='tc_product_images')
+    image = models.ImageField(blank=True, null=True, upload_to='tc_product_images')
+
+    # change 'blank' to false later for deployment
 
     def __str__(self):
         return self.name
@@ -69,4 +71,10 @@ class Order(models.Model):
     def get_total_price(self):
         return sum(product.product.price * product.quantity for product in self.cartproducts.all())
 
-    
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.title

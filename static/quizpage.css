@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+* {
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+body {
+    background-color: rgb(222, 204, 240);
+}
+
+.card {
+    background-color: white;
+    width: 45%;
+    margin: 2em auto;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 1em;
+}
+
+h1 {
+    font-weight: 500;
+}
+
+.card p:first-of-type {
+    font-size: 1.3em;
+    color: #444;
+    margin: 1em 0;
+    line-height: 1.5em;
+    /* font-weight: bold; */
+}
+
+.price {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: bold;
+}
+
+.option {
+    font-size: 1em;
+    color: #777;
+    margin: 1em 0;
+    line-height: 1.5em;
+    border: 1px solid #999;
+    /* border-bottom: 3px solid #777; */
+    padding: .5em;
+    box-sizing: border-box;
+    border-radius: .5em;
+    cursor: pointer;
+}

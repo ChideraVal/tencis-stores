@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, CartProduct, Cart, Order
-from django.http import JsonResponse, HttpResponse
+from .models import Product, CartProduct, Cart, Order, Post
+from django.http import JsonResponse, HttpResponse, HttpResponsePermanentRedirect
 from django.views.decorators.csrf import csrf_exempt
 from .forms import OrderForm
 from dotenv import load_dotenv
@@ -10,10 +10,98 @@ import secrets
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
+import json
+
 
 load_dotenv()
-secret_key = os.getenv('SECRET_KEY') 
+secret_key = os.getenv('SECRET_KEY')
 
+def send_quiz(request):
+    payment_success_mail = EmailMultiAlternatives(
+                    'Chapter 1 Q&A!',
+f"""
+Hello Chidera.
+""",
+                    str(settings.DEFAULT_FROM_EMAIL),
+                    ['fluxlite224@gmail.com'],
+                    reply_to=['pyjamelnoreply@mail.com']
+                )
+    html_page = render_to_string('quizpage.html')
+    payment_success_mail.attach_alternative(html_page, 'text/html')
+    payment_success_mail.send(fail_silently=False)
+    return None
+
+def quiz(request):
+    quizzes = [
+        {
+         'id': 1,
+         'question': '2 + 3 x (4 / 1)',
+         'o1': 29,
+         'o2': 87,
+         'o3': 19,
+         'ans': 'o1'
+        },
+        {
+         'id': 2,
+         'question': '2 + 29 = 31',
+         'o1': 'True',
+         'o2': 'False',
+         'o3': 'Maybe',
+         'ans': 'o2'
+        }
+    ]
+    return render(request, 'quizpage.html', {'quizzes': quizzes})
+
+def get_posts(request):
+    posts = Post.objects.all()
+    res = HttpResponse(f"{len(posts)} posts")
+    return res
+
+def create_post(request):
+    if request.method == 'POST':
+        print(request.body)
+        data = json.loads(request.body)
+        title = data['title']
+        content = data['content']
+
+        if title and content:
+            post = Post.objects.create(title=title, content=content)
+            print(f'POST WITH ID OF {post.id} CREATED!')
+            return redirect('/getposts/')
+        
+        return HttpResponse('Invalid create post data')
+
+def edit_post(request, id):
+    if request.method == 'POST':
+        try:
+            post = Post.objects.get(id=id)
+        except Post.DoesNotExist:
+            return HttpResponse('Post does not exist')
+        
+        print(request.body)
+        data = json.loads(request.body)
+        title = data['title']
+        content = data['content']
+
+        if title and content:
+            post.title = title
+            post.content = content
+            post.save()
+            return redirect('/getposts/')
+
+        return HttpResponse('Invalid edit post data')
+
+def delete_post(request, id):
+    if request.method == 'POST':
+        try:
+            post = Post.objects.get(id=id)
+        except Post.DoesNotExist:
+            return HttpResponse('Post does not exist')
+        
+        post.delete()
+
+        return redirect('/getposts/')
+        
 def not_found(request, exception):
     return render(request, '404.html')
 
