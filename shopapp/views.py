@@ -17,6 +17,24 @@ load_dotenv()
 secret_key = os.getenv('SECRET_KEY')
 
 def send_quiz(request):
+    quizzes = [
+        {
+         'id': 1,
+         'question': '2 + 3 x (4 / 1)',
+         'o1': 29,
+         'o2': 87,
+         'o3': 19,
+         'ans': 'o1'
+        },
+        {
+         'id': 2,
+         'question': '2 + 29 = 31',
+         'o1': 'True',
+         'o2': 'False',
+         'o3': 'Maybe',
+         'ans': 'o2'
+        }
+    ]
     payment_success_mail = EmailMultiAlternatives(
                     'Chapter 1 Q&A!',
 f"""
@@ -26,7 +44,7 @@ Hello Chidera.
                     ['fluxlite224@gmail.com'],
                     reply_to=['pyjamelnoreply@mail.com']
                 )
-    html_page = render_to_string('quizpage.html')
+    html_page = render_to_string('quizpage.html', {'quizzes': quizzes})
     payment_success_mail.attach_alternative(html_page, 'text/html')
     payment_success_mail.send(fail_silently=False)
     return None
