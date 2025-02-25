@@ -28,7 +28,7 @@
 
         .card {
             background-color: white;
-            width: 45%;
+            /* width: 45%; */
             margin: 2em auto;
             padding: 1em;
             box-sizing: border-box;
@@ -76,22 +76,19 @@
         <p id="question">{{ quiz.question }}</p>
 
         {% if quiz.ans == 'o1' %}
-        <p class="option" id="o1" style="border: 1px solid rgb(33, 187, 33); outline: 3px solid rgb(146, 233, 146);">{{
-            quiz.o1 }}</p>
+        <p class="option" id="o1" style="border: 1px solid rgb(33, 187, 33); outline: 3px solid rgb(146, 233, 146);">{{ quiz.o1 }}</p>
         {% else %}
         <p class="option" id="o1">{{ quiz.o1 }}</p>
         {% endif %}
 
         {% if quiz.ans == 'o2' %}
-        <p class="option" id="o2" style="border: 1px solid rgb(33, 187, 33); outline: 3px solid rgb(146, 233, 146);">{{
-            quiz.o2 }}</p>
+        <p class="option" id="o2" style="border: 1px solid rgb(33, 187, 33); outline: 3px solid rgb(146, 233, 146);">{{ quiz.o2 }}</p>
         {% else %}
         <p class="option" id="o2">{{ quiz.o2 }}</p>
         {% endif %}
 
         {% if quiz.ans == 'o3' %}
-        <p class="option" id="o3" style="border: 1px solid rgb(33, 187, 33); outline: 3px solid rgb(146, 233, 146);">{{
-            quiz.o3 }}</p>
+        <p class="option" id="o3" style="border: 1px solid rgb(33, 187, 33); outline: 3px solid rgb(146, 233, 146);">{{ quiz.o3 }}</p>
         {% else %}
         <p class="option" id="o3">{{ quiz.o3 }}</p>
         {% endif %}

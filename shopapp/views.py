@@ -33,6 +33,38 @@ def send_quiz(request):
          'o2': 'False',
          'o3': 'Maybe',
          'ans': 'o2'
+        },
+        {
+         'id': 1,
+         'question': '2 + 3 x (4 / 1)',
+         'o1': 29,
+         'o2': 87,
+         'o3': 19,
+         'ans': 'o1'
+        },
+        {
+         'id': 2,
+         'question': '2 + 29 = 31',
+         'o1': 'True',
+         'o2': 'False',
+         'o3': 'Maybe',
+         'ans': 'o2'
+        },
+        {
+         'id': 1,
+         'question': '2 + 3 x (4 / 1)',
+         'o1': 29,
+         'o2': 87,
+         'o3': 19,
+         'ans': 'o1'
+        },
+        {
+         'id': 2,
+         'question': '2 + 29 = 31',
+         'o1': 'True',
+         'o2': 'False',
+         'o3': 'Maybe',
+         'ans': 'o2'
         }
     ]
     payment_success_mail = EmailMultiAlternatives(
