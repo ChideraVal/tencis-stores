@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, CartProduct, Cart, Order, Post
-from django.http import JsonResponse, HttpResponse, HttpResponsePermanentRedirect
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .forms import OrderForm
 from dotenv import load_dotenv
@@ -10,6 +10,7 @@ import secrets
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required, permission_required
 import json
 
 
@@ -100,19 +101,28 @@ def quiz(request):
          'ans': 'o2'
         }
     ]
-    return render(request, 'quizpage.html', {'quizzes': quizzes})
+    return render(request, 'app.html')
 
+# @login_required(login_url='/signin/')
+@csrf_exempt
 def get_posts(request):
+    print(request.headers)
     posts = Post.objects.all()
     res = HttpResponse(f"{len(posts)} posts")
     return res
 
+@csrf_exempt
 def create_post(request):
+    print(request.headers)
     if request.method == 'POST':
-        print(request.body)
-        data = json.loads(request.body)
-        title = data['title']
-        content = data['content']
+        print(request.FILES, request.FILES['image'])
+        print(request.FILES['image'].read())
+        # with open(request.FILES['image'], 'r') as f:
+        #     print(f.read())
+        data = request.POST
+        title = data.get('title')
+        content = data.get('content')
+        print(title, content)
 
         if title and content:
             post = Post.objects.create(title=title, content=content)
@@ -128,10 +138,11 @@ def edit_post(request, id):
         except Post.DoesNotExist:
             return HttpResponse('Post does not exist')
         
-        print(request.body)
-        data = json.loads(request.body)
-        title = data['title']
-        content = data['content']
+        print(request.POST)
+        data = request.POST
+        title = data.get('title')
+        content = data.get('content')
+        print(title, content)
 
         if title and content:
             post.title = title

@@ -168,6 +168,29 @@ p.qno {
     background-color: orangered;
 }
 
-/* button#prev {
-    background-color: gray;
-} */
+@media (max-width: 1100px) {
+    .card {
+        width: 60%;
+    }
+
+    .cpt {
+        width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        background-color: rgb(227, 216, 238);
+    }
+
+    .chapters {
+        background-color: rgb(227, 216, 238);
+    }
+
+    .cpt {
+        background-color: rgb(227, 216, 238);
+    }
+}
