@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Collect static files
+        run: python manage.py collectstatic
+
       - name: Run migrations
         run: python manage.py migrate
 
@@ -39,6 +42,9 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Collect static files
+        run: python manage.py collectstatic
 
       - name: Run migrations
         run: python manage.py migrate
