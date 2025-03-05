@@ -3,9 +3,9 @@ from .models import *
 from django.contrib.auth.models import User
 from .forms import OrderForm
 from urllib.parse import urlencode
-import json
 
-data = json.dumps({
+
+data = urlencode({
     'title': 'My Title',
     'content': 'this is a my title content'
 })

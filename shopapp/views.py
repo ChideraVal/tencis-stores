@@ -103,22 +103,16 @@ def quiz(request):
     ]
     return render(request, 'app.html')
 
-# @login_required(login_url='/signin/')
-@csrf_exempt
+@login_required(login_url='/signin/')
 def get_posts(request):
     print(request.headers)
     posts = Post.objects.all()
     res = HttpResponse(f"{len(posts)} posts")
     return res
 
-@csrf_exempt
 def create_post(request):
     print(request.headers)
     if request.method == 'POST':
-        print(request.FILES, request.FILES['image'])
-        print(request.FILES['image'].read())
-        # with open(request.FILES['image'], 'r') as f:
-        #     print(f.read())
         data = request.POST
         title = data.get('title')
         content = data.get('content')
