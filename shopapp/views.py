@@ -86,7 +86,7 @@ def quiz(request):
     quizzes = [
         {
          'id': 1,
-         'question': '2 + 3 x (4 / 1)',
+         'question': '20 + 3 x (4 / 1)',
          'o1': 29,
          'o2': 87,
          'o3': 19,
