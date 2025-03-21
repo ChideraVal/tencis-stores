@@ -53,7 +53,7 @@ function makePayment() {
     let lastNameValue = document.getElementById('last_name').value;
 
     FlutterwaveCheckout({
-        public_key: "FLWPUBK-4665a5bfdd9fe8535fa8c74f0d845b09-X",
+        public_key: "FLWPUBK-6c557fa7cd28069529a294ade261cee2-X",
         tx_ref: `${orderIdValue}`,
         amount: Number(amountValue),
         currency: "NGN",
