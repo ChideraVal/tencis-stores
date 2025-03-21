@@ -5,9 +5,7 @@ from django.utils import timezone
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(blank=True, null=True, upload_to='tc_product_images')
-
-    # change 'blank' to false later for deployment
+    image = models.ImageField(blank=False, null=False, upload_to='tc_product_images')
 
     def __str__(self):
         return self.name

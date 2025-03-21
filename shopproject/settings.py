@@ -180,7 +180,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
     'SECURE': True
 }
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Default primary key field type
