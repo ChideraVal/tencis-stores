@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'game.css' %}">
+</head>
+<body>
+    <div class="page">
+        <div class="prize">
+            <p>Bet ₦200 to Win</p>
+            <h1>₦3,000</h1>
+        </div>
+
+        <div class="rollcon">
+            <div class="roll">
+                <div class="dice" style="border: 2px solid blueviolet;">?</div>
+                <div class="dice" style="border: 2px solid blueviolet;">?</div>
+                <div class="dice" style="border: 2px solid blueviolet;">?</div>
+            </div>
+
+            {% if msg %}
+            <div class="state">
+                <p class="lose" style="border: 2px solid orangered; color: orangered;">{{ msg }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        
+
+        <div class="rem">
+            <img src="{% static 'information.png' %}" alt="" width="25" height="25">
+            <p>You have {{ rem }} bet{{ rem|pluralize }} left</p>
+        </div>
+
+        <form action="/bet15/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Place Bet">
+        </form>
+
+        <div class="shopcon">
+            <div class="header">
+                <h2>Need more bets?</h2>
+                <p>Buy your bets here</p>
+            </div>
+    
+            <div class="shop">
+                <div class="card">
+                    <div class="image">
+                        <img src="{% static 'secret.png' %}" alt="" width="35" height="35">
+                    </div>
+                    <div class="desc">
+                        <h3>1 Bet</h3>
+                        <p>₦200</p>
+                    </div>
+                    <div class="qty">
+                        <p class="btn">+</p>
+                        <p class="num">1</p>
+                        <p class="btn">+</p>
+                    </div>
+                </div>
+                <form action="/buy15/" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Buy Bet">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

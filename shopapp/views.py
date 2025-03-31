@@ -12,11 +12,62 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required, permission_required
 import json
+import random
 
 
 load_dotenv()
 secret_key = os.getenv('SECRET_KEY')
 
+
+def bet15(request):
+    rem = 0
+    if not request.session.__contains__('bets'):
+        print('No bet session')
+        request.session.__setitem__('bets', str(rem))
+    else:
+        rem = int(request.session.__getitem__('bets'))
+        print('REM: ', rem)
+    if request.method == 'POST':
+        if rem == 0:
+            msg = 'Insufficient bets!'
+            return render(request, 'bet15home.html', {'msg': msg, 'rem': rem})
+        
+        res = [random.randint(1, 6) for _ in range(3)]
+        request.session.__setitem__('bets', str(rem - 1))
+        rem -= 1
+        msg = ''
+        if res == [6, 6, 6]:
+            msg = 'You win!'
+        elif res.count(6) == 2:
+            msg = 'So close!'
+        else:
+            msg = 'You lose, try again!'
+        
+        # def check(dice, faces):
+        # res = [random.randint(1, faces) for _ in range(dice)]
+        # msg = ''
+        # dice = 4
+        # count = 0
+        # for i in range(1, dice):
+        #     if res[0] == res[i]:
+        #         count += 1
+        # if count == dice - 1:
+        #     print(f'Correct: {res}')
+        #     msg = 'You win!'
+        # elif count == dice - 2:
+        #     print(f'So close: {res}')
+        #     msg = 'So close!'
+        # else:
+        #     print(f'Wrong: {res}')
+        #     msg = 'You lose, try again!'
+        # return count == dice - 1
+        return render(request, 'bet15.html', {'res': res, 'msg': msg, 'rem': rem})
+    return render(request, 'bet15home.html', {'rem': rem})
+
+def buy15(request):
+    rem = int(request.session.__getitem__('bets'))
+    request.session.__setitem__('bets', str(rem + 10))
+    return redirect('/bet15/')
 
 def get_posts(request):
     print(request.headers)

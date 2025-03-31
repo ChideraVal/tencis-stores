@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+}
+
+body {
+    background-color: black;
+    background-color: rgb(194, 156, 230);
+}
+
+.page {
+    width: 40%;
+    margin: 5em auto;
+    padding: 2em 1em;
+    box-sizing: border-box;
+    border-radius: .7em;
+    background-color: rgb(19, 18, 18);
+    background-color: white;
+}
+
+.prize {
+    /* background: linear-gradient(135deg, black, orangered, black); */
+    border: 2px solid rgb(211, 184, 236);
+    background-color: rgb(79, 14, 139);
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: .7em;
+}
+
+@keyframes zoom {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.prize p {
+    color: rgb(252, 2, 2);
+    color: white;
+    text-align: center;
+    margin-bottom: .5em;
+}
+
+.prize h1 {
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    animation: zoom 1.3s ease infinite;
+    font-family: "Poppins", sans-serif;
+}
+
+.rollcon {
+    margin: 1.5em 0 1em 0;
+    background-color: rgb(212, 207, 207);
+    background-color: rgb(225, 215, 235);
+    background-color: rgb(241, 236, 236);
+
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: .7em;
+}
+
+.roll {
+    /* background-color: rgb(53, 49, 49);
+    background-color: rgb(194, 156, 230); */
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rollcon p {
+    /* background-color: black; */
+    /* border: 2px solid rgb(25, 202, 25); */
+    border: 2px solid red;
+    padding: .3em .7em;
+    box-sizing: border-box;
+    border-radius: 4em;
+    color: rgb(240, 70, 70);
+    text-align: center;
+    display: inline-block;
+    margin-top: 1.5em;
+}
+
+.dice {
+    flex: 1;
+    border: 2px solid rgb(126, 46, 206);
+    border: 2px solid rgb(25, 202, 25);
+    padding: .5em;
+    box-sizing: border-box;
+    border-radius: .4em;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    font-size: 2em;
+    font-family: "Poppins", sans-serif;
+}
+
+.dice:last-of-type {
+    border: 2px solid red;
+
+}
+
+.rem {
+    display: inline-flex;
+    gap: .3em;
+    margin-bottom: 1em;
+    background-color: white;
+    border: 2px solid rgb(168, 107, 230);
+    padding: .1em .4em;
+    box-sizing: border-box;
+    border-radius: 4em;
+    align-items: center;
+}
+
+.rem img {
+    display: block;
+}
+
+.rem p {
+    color: rgb(151, 85, 218);
+    /* margin-bottom: 1.5em;
+    background-color: black;
+    border: 2px solid rgb(168, 107, 230);
+    padding: .3em .7em;
+    box-sizing: border-box;
+    border-radius: 4em; */
+    color: black;
+    text-align: center;
+    font-size: .9em;
+    /* display: inline-block; */
+}
+
+button, input[type=submit] {
+    background-color: rgb(61, 23, 99);
+    background-color: blueviolet;
+    border: none;
+    /* border-bottom: 4px solid rgb(139, 51, 228); */
+    cursor: pointer;
+    padding: .6em;
+    box-sizing: border-box;
+    border-radius: .4em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    width: 100%;
+    letter-spacing: .03em;
+}
+
+/* Shop css */
+
+.shopcon {
+    padding: 1em 0 0 0;
+    box-sizing: border-box;
+    border-radius: .7em;
+    background-color: rgb(19, 18, 18);
+    background-color: white;
+}
+
+.header {
+    color: black;
+}
+
+.header h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+}
+
+.shop {
+    margin: 1em 0 0 0;
+}
+
+.card {
+    margin: 1em 0;
+    background-color: rgb(241, 236, 236);
+    padding: .6em;
+    box-sizing: border-box;
+    border-radius: .7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image, .desc, .qty {
+    padding: .4em;
+    box-sizing: border-box;
+}
+
+.image {
+    background-color: white;
+    border-radius: .5em;;
+}
+
+.image img {
+    display: block;
+}
+
+.desc {
+    flex: 1;
+    padding: .4em .8em;
+}
+
+.qty {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.qty p.btn {
+    padding: .7em;
+    box-sizing: border-box;
+    /* border-radius: 1em; */
+    clip-path: circle();
+    /* border: 2px solid blueviolet; */
+    font-size: 20px;
+    background-color: #fff;
+    color: black;
+    /* width: 20px;
+    height: 20px; */
+    text-align: center;
+}
+
+.qty p.num {
+ color: black;
+}
+
+@media (max-width: 1100px) {
+    .page {
+        width: 50%;
+    }
+}
+
+@media (max-width: 800px) {
+    .page {
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        width: 100%;
+        margin: 0;
+        background-color: rgb(221, 202, 238);
+    }
+
+    .shopcon {
+        background-color: rgb(221, 202, 238);
+    }
+}
