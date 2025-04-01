@@ -24,15 +24,15 @@ def send_email(request):
     send_mail(
         'Email title',
         'Hello world',
-        'Mapp <pyjamel224@gmail.com>',
-        ['fluxlite224@gmail.com'],
+        'Mapp <fluxlite224@gmail.com>',
+        ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com'],
         False,
-        'pyjamel224@gmail.com',
-        str(os.getenv('EMAIL_HOST_PASSWORD')),
+        'fluxlite224@gmail.com',
+        "lslxjpsdjxbceumv",
         get_connection(),
         html
     )
-    return 'Email sent success!'
+    return HttpResponse('Email send success!')
 
 
 def bet15(request):
