@@ -57,7 +57,7 @@ def send_email(request):
     email2 = EmailMultiAlternatives(
         'Email Alt Title',
         'Hello world 2',
-        settings.DEFAULT_FROM_EMAIL,
+        'Flux <fluxlite224@gmail.com>',
         ['onyebuchi1099@gmail.com'],
         None,
     )
