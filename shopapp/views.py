@@ -21,17 +21,22 @@ secret_key = os.getenv('SECRET_KEY')
 
 def send_email(request):
     html = render_to_string('emailcode.html')
-    send_mail(
-        'Email title',
-        'Hello world',
-        'Mapp <fluxlite224@gmail.com>',
-        ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com'],
-        False,
-        'fluxlite224@gmail.com',
-        "lslxjpsdjxbceumv",
-        get_connection(),
-        html
-    )
+    conn = get_connection()
+    conn.open()
+
+    for i in ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com']:
+        send_mail(
+            'Email title',
+            'Hello world',
+            'Mapp <fluxlite224@gmail.com>',
+            [i],
+            False,
+            'fluxlite224@gmail.com',
+            "lslxjpsdjxbceumv",
+            conn,
+            html
+        )
+    conn.close()
     return HttpResponse('Email send success!')
 
 
