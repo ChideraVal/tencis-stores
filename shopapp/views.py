@@ -20,7 +20,7 @@ secret_key = os.getenv('SECRET_KEY')
 
 
 def send_email(request):
-    html = render_to_string('paymentsuccessmail.html')
+    html = render_to_string('emailcode.html')
     send_mail(
         'Email title',
         'Hello world',
