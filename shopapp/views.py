@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import os
 import requests
 import secrets
-from django.core.mail import EmailMultiAlternatives, send_mail
+from django.core.mail import EmailMultiAlternatives, send_mail, get_connection
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required, permission_required
@@ -29,6 +29,7 @@ def send_email(request):
         False,
         'pyjamel224@gmail.com',
         str(os.getenv('EMAIL_HOST_PASSWORD')),
+        get_connection(),
         html
     )
     return 'Email sent success!'
