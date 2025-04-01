@@ -21,22 +21,31 @@ secret_key = os.getenv('SECRET_KEY')
 
 def send_email(request):
     html = render_to_string('emailcode.html')
-    conn = get_connection()
+    conn = get_connection(
+        backend='django.core.mail.backends.smtp.EmailBackend',
+        host='smtp.gmail.com',
+        port=587,
+        username='fluxlite224@gmail.com',
+        password='lslxjpsdjxbceumv',
+        use_tls=True
+    )
     conn.open()
 
     for i in ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com']:
         send_mail(
-            'Email title',
-            'Hello world',
-            'Mapp <fluxlite224@gmail.com>',
-            [i],
-            False,
-            'fluxlite224@gmail.com',
-            "lslxjpsdjxbceumv",
-            conn,
-            html
+            subject='Email title',
+            messgae='Hello world',
+            from_email='Mapp <fluxlite224@gmail.com>',
+            recipient_list=[i],
+            fail_silently=False,
+            # 'fluxlite224@gmail.com',
+            # "lslxjpsdjxbceumv",
+            connection=conn,
+            html_message=html
         )
     conn.close()
+
+
     return HttpResponse('Email send success!')
 
 
