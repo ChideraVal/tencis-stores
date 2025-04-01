@@ -31,40 +31,40 @@ def send_email(request):
     )
     conn.open()
 
-    for i in ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com']:
-        send_mail(
-            subject='Email title',
-            message='Hello world',
-            from_email='Mapp <fluxlite224@gmail.com>',
-            recipient_list=[i],
-            fail_silently=False,
-            # 'fluxlite224@gmail.com',
-            # "lslxjpsdjxbceumv",
-            connection=conn,
-            html_message=html
-        )
+    # for i in ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com']:
+    #     send_mail(
+    #         subject='Email title',
+    #         message='Hello world',
+    #         from_email='Mapp <fluxlite224@gmail.com>',
+    #         recipient_list=[i],
+    #         fail_silently=False,
+    #         # 'fluxlite224@gmail.com',
+    #         # "lslxjpsdjxbceumv",
+    #         connection=conn,
+    #         html_message=html
+    #     )
 
-    # email = EmailMultiAlternatives(
-    #     'Email Alt Title',
-    #     'Hello world 2',
-    #     settings.DEFAULT_FROM_EMAIL,
-    #     ['pyjamel@gmail.com'],
-    #     None,
-    # )
+    email = EmailMultiAlternatives(
+        'Email Alt Title',
+        'Hello world 2',
+        settings.DEFAULT_FROM_EMAIL,
+        ['pyjamel@gmail.com'],
+        None,
+    )
 
-    # email.attach_alternative(html, 'text/html')
+    email.attach_alternative(html, 'text/html')
 
-    # email2 = EmailMultiAlternatives(
-    #     'Email Alt Title',
-    #     'Hello world 2',
-    #     settings.DEFAULT_FROM_EMAIL,
-    #     ['onyebuchi1099@gmail.com'],
-    #     None,
-    # )
+    email2 = EmailMultiAlternatives(
+        'Email Alt Title',
+        'Hello world 2',
+        settings.DEFAULT_FROM_EMAIL,
+        ['onyebuchi1099@gmail.com'],
+        None,
+    )
 
-    # email2.attach_alternative(html, 'text/html')
+    email2.attach_alternative(html, 'text/html')
 
-    # conn.send_messages([email, email2])
+    conn.send_messages([email, email2])
 
     conn.close()
 
