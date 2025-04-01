@@ -48,7 +48,7 @@ def send_email(request):
         'Email Alt Title',
         'Hello world 2',
         settings.DEFAULT_FROM_EMAIL,
-        ['pyjamel@gmail.com'],
+        ['pyjamel224@gmail.com'],
         None,
     )
 
