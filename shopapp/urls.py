@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('bet15/', views.bet15),
     path('buy15/', views.buy15),
-    # path('bet15h/', views.gamehome),
+    path('sendemail/', views.send_email),
     path('getposts/', views.get_posts),
     path('createpost/', views.create_post),
     path('editpost/<int:id>/', views.edit_post),

@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import os
 import requests
 import secrets
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required, permission_required
@@ -17,6 +17,20 @@ import random
 
 load_dotenv()
 secret_key = os.getenv('SECRET_KEY')
+
+
+def send_email(request):
+    html = render_to_string('paymentsuccessmail.html')
+    send_mail(
+        'Email title',
+        'Hello world',
+        'Mapp <pyjamel224@gmail.com>',
+        ['fluxlite224@gmail.com'],
+        False,
+        'pyjamel224@gmail.com',
+        str(os.getenv('EMAIL_HOST_PASSWORD')),
+        html
+    )
 
 
 def bet15(request):
