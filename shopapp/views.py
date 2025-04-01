@@ -31,6 +31,7 @@ def send_email(request):
         str(os.getenv('EMAIL_HOST_PASSWORD')),
         html
     )
+    return 'Email sent success!'
 
 
 def bet15(request):
