@@ -36,7 +36,7 @@ SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 APPEND_SLASH = True
 ALLOWED_HOSTS = ['store.tencis.online', '127.0.0.1']
 
