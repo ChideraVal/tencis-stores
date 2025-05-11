@@ -89,9 +89,9 @@ def bet15(request):
         request.session.__setitem__('bets', str(rem - 1))
         rem -= 1
         msg = ''
-        if res == [6, 6, 6]:
+        if res == [6, 6, 6] or res == [4, 4, 4]:
             msg = 'You win!'
-        elif res.count(6) == 2:
+        elif res.count(6) == 2 or res.count(4) == 2:
             msg = 'So close!'
         else:
             msg = 'You lose, try again!'

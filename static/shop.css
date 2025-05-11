@@ -171,10 +171,15 @@ html {
 
 .ftcon,
 .ftconsub,
-.ftbox,
-.ftimg {
+.ftbox {
     padding: 0;
     margin: 0;
+}
+
+.ftimg {
+    padding: 1em;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
 }
 
 .ftcon {
@@ -305,6 +310,11 @@ html {
     color: #000;
 }
 
+.revbox p:nth-child(2) {
+    font-style: italic;
+    font-size: .9em;
+}
+
 div.author {
     display: flex;
     align-items: center;
@@ -379,6 +389,7 @@ p.name {
     display: flex;
     flex-direction: column;
     position: relative;
+    /* height: 45vh; */
 }
 
 .shopbox p.new {
@@ -397,7 +408,7 @@ p.name {
 
 .shopbox img {
     max-width: 100%;
-    height: auto;
+    height: 70%;
     display: block;
     border-radius: 1em;
     margin-bottom: 1em;
@@ -406,7 +417,7 @@ p.name {
 .shopbox p.itemname {
     font-size: 1.1em;
     font-weight: 500;
-    flex: 1;
+    /* flex: 1; */
 }
 
 .shopbox p.itemprice {

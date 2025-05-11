@@ -64,7 +64,7 @@ function makePayment() {
             name: `${firstNameValue} ${lastNameValue}`,
         },
         customizations: {
-            title: "Tencis Stores",
+            title: "ShopSwift",
             description: "Pay now to complete your purchase and verify your order.",
         },
         callback: function (payment) {

@@ -140,7 +140,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = str(django_email_host_user)
 EMAIL_HOST_PASSWORD = str(django_email_host_password)
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = f'Tencis Stores <{str(django_email_host_user)}>'
+DEFAULT_FROM_EMAIL = f'ShopSwift <{str(django_email_host_user)}>'
 
 
 # Static files (CSS, JavaScript, Images)
@@ -174,13 +174,13 @@ SESSION_COOKIE_SAMESITE = 'Strict'
 
 # Cloudinary settings
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': str(os.getenv('CLOUDINARY_CLOUD_NAME')),
-    'API_KEY': str(os.getenv('CLOUDINARY_API_KEY')),
-    'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
-    'SECURE': True
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': str(os.getenv('CLOUDINARY_CLOUD_NAME')),
+#     'API_KEY': str(os.getenv('CLOUDINARY_API_KEY')),
+#     'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
+#     'SECURE': True
+# }
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Default primary key field type
