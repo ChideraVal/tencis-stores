@@ -14,7 +14,7 @@
         <a href="#shop">Shop Now</a>
     </div>
     <div class="image">
-        <img src="{% static 'watchimg.png' %}" alt="">
+        <img src="{% static 'images/watchimg.png' %}" alt="">
     </div>
 </div>
 
@@ -22,31 +22,30 @@
     <div class="ftcon">
         <div class="ftconsub">
             <div class="ftbox">
-                <img src="{% static 'dashboard.png' %}" alt="">
+                <img src="{% static 'images/dashboard.png' %}" alt="">
                 <h2>Wide Product Variety</h2>
                 <p>Find everything you need—from fashion and tech to home essentials—all in one convenient place. We’re
                     your one-stop shop for everyday living.</p>
             </div>
             <div class="ftbox">
-                <img src="{% static 'calendar.png' %}" alt="">
+                <img src="{% static 'images/calendar.png' %}" alt="">
                 <h2>Fast & Reliable Delivery</h2>
                 <p>Shop with confidence knowing your items will arrive quickly and safely. We partner with trusted
                     couriers to deliver your orders on time, every time.</p>
             </div>
         </div>
         <div class="ftimg">
-            <!-- <img src="{% static 'feat.png' %}" alt="" width="500" height="400"> -->
         </div>
         <div class="ftconsub">
             <div class="ftbox">
-                <img src="{% static 'batteryv.png' %}" alt="">
+                <img src="{% static 'images/batteryv.png' %}" alt="">
                 <h2>Easy Shopping Experience</h2>
                 <p>
                     Our user-friendly platform makes browsing, selecting, and checking out fast and simple. Whether
                     you're on desktop or mobile, shopping is smooth and stress-free.</p>
             </div>
             <div class="ftbox">
-                <img src="{% static 'price-tag.png' %}" alt="">
+                <img src="{% static 'images/price-tag.png' %}" alt="">
                 <h2>Affordable prices</h2>
                 <p>
                     Enjoy competitive pricing on all your favorite items. We believe quality shouldn’t break the bank,
@@ -60,7 +59,7 @@
     <div class="ctg">
         <div class="ctgheader">
             <h2>Our Products</h2>
-            <a href="/products/">see all</a>
+            <a href="{% url 'product_list' %}">see all</a>
         </div>
 
         <div class="shopcon">
@@ -92,7 +91,7 @@
         <a href="#contact">Contact Us</a>
     </div>
     <div class="image">
-        <img src="{% static 'img1.jpg' %}" alt="">
+        <img src="{% static 'images/img1.jpg' %}" alt="">
     </div>
 </div>
 
@@ -105,7 +104,7 @@
         <div class="revbox">
             <div class="author">
                 <div class="authorimg">
-                    <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    <img src="{% static 'images/A junior high s 1.png' %}" alt="" width="50" height="50">
                 </div>
                 <div class="authordesc">
                     <p class="name">Stella Smith</p>
@@ -119,7 +118,7 @@
         <div class="revbox">
             <div class="author">
                 <div class="authorimg">
-                    <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    <img src="{% static 'images/A junior high s 1.png' %}" alt="" width="50" height="50">
                 </div>
                 <div class="authordesc">
                     <p class="name">Aisha Barakat</p>
@@ -133,7 +132,7 @@
         <div class="revbox">
             <div class="author">
                 <div class="authorimg">
-                    <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    <img src="{% static 'images/A junior high s 1.png' %}" alt="" width="50" height="50">
                 </div>
                 <div class="authordesc">
                     <p class="name">Solomon Adeyemi</p>
@@ -147,7 +146,7 @@
         <div class="revbox">
             <div class="author">
                 <div class="authorimg">
-                    <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    <img src="{% static 'images/A junior high s 1.png' %}" alt="" width="50" height="50">
                 </div>
                 <div class="authordesc">
                     <p class="name">Jessica Okeke</p>
@@ -161,7 +160,7 @@
         <div class="revbox">
             <div class="author">
                 <div class="authorimg">
-                    <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    <img src="{% static 'images/A junior high s 1.png' %}" alt="" width="50" height="50">
                 </div>
                 <div class="authordesc">
                     <p class="name">Stanley Williams</p>
@@ -176,7 +175,7 @@
         <div class="revbox">
             <div class="author">
                 <div class="authorimg">
-                    <img src="{% static 'A junior high s 1.png' %}" alt="" width="50" height="50">
+                    <img src="{% static 'images/A junior high s 1.png' %}" alt="" width="50" height="50">
                 </div>
                 <div class="authordesc">
                     <p class="name">Chinaza MaryAnn</p>
@@ -191,5 +190,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'navigation.js' %}"></script>
+<script src="{% static 'js/navigation.js' %}"></script>
 {% endblock %}

@@ -11,7 +11,7 @@
         <div class="ctg">
             <div class="ctgheader">
                 <h2>My Cart</h2>
-                <a href="/products/">Add products</a>
+                <a href="{% url 'product_list' %}">Add products</a>
             </div>
             <p id="cart-count-2">{{ cart.cartproduct_set.all.count }} products</p>
             <div class="shopcon">
@@ -59,7 +59,7 @@
                 <div class="details">
                     <h2>Shipping Information</h2>
 
-                    <form action="/cart/" method="post">
+                    <form action="{% url 'view_cart' %}" method="post">
                         {% csrf_token %}
                         {% for field in form %}
                         <div class="form">
@@ -97,7 +97,7 @@
     <div class="cart">
         <a href="/cart/">
             <div class="cartcon">
-                <img src="{% static 'shopping-cart.png' %}" alt="" width="30" height="30">
+                <img src="{% static 'images/shopping-cart.png' %}" alt="" width="30" height="30">
                 <p id="cart-count">{{ cart.cartproduct_set.all|length }}</p>
             </div>
         </a>
@@ -106,5 +106,5 @@
 
 
 {% block scripts %}
-    <script src="{% static 'cart.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
 {% endblock %}

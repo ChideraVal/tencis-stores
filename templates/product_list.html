@@ -40,9 +40,9 @@
 
 {% block cart %}
     <div class="cart">
-        <a href="/cart/">
+        <a href="{% url 'view_cart' %}">
             <div class="cartcon">
-                <img src="{% static 'shopping-cart.png' %}" alt="" width="30" height="30">
+                <img src="{% static 'images/shopping-cart.png' %}" alt="" width="30" height="30">
                 <p id="cart-count">{{ cart.cartproduct_set.all|length }}</p>
             </div>
         </a>
@@ -51,5 +51,5 @@
 
 
 {% block scripts %}
-    <script src="{% static 'productlist.js' %}"></script>
+    <script src="{% static 'js/productlist.js' %}"></script>
 {% endblock %}

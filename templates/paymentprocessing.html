@@ -8,7 +8,7 @@
 {% block body %}
     <div class="success">
         <div class="successinfo">
-            <img src="{% static 'pending.png' %}" alt="" width="100" height="100">
+            <img src="{% static 'images/pending.png' %}" alt="" width="100" height="100">
             <h2>Processing your payment...</h2>
             <p>Your payment of ₦{{ order.get_total_price }} is pending and your order ({{ order.order_id }})
                 is being processed. Please <a href="">refresh</a> the page to re-check the current payment status.
@@ -50,5 +50,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'payment.js' %}"></script>
+    <script src="{% static 'js/navigation.js' %}"></script>
 {% endblock %}

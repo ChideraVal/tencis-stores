@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, CartProduct, Cart, Order, Post
+from .models import Product, CartProduct, Cart, Order
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .forms import OrderForm
@@ -10,170 +10,9 @@ import secrets
 from django.core.mail import EmailMultiAlternatives, send_mail, get_connection
 from django.conf import settings
 from django.template.loader import render_to_string
-from django.contrib.auth.decorators import login_required, permission_required
-import json
-import random
-
 
 load_dotenv()
 secret_key = os.getenv('SECRET_KEY')
-
-
-def send_email(request):
-    html = render_to_string('emailcode.html')
-    conn = get_connection(
-        backend='django.core.mail.backends.smtp.EmailBackend',
-        host='smtp.gmail.com',
-        port=587,
-        username='fluxlite224@gmail.com',
-        password='lslxjpsdjxbceumv',
-        use_tls=True
-    )
-    conn.open()
-
-    # for i in ['pyjamel224@gmail.com', 'onyebuchi1099@gmail.com']:
-    #     send_mail(
-    #         subject='Email title',
-    #         message='Hello world',
-    #         from_email='Mapp <fluxlite224@gmail.com>',
-    #         recipient_list=[i],
-    #         fail_silently=False,
-    #         # 'fluxlite224@gmail.com',
-    #         # "lslxjpsdjxbceumv",
-    #         connection=conn,
-    #         html_message=html
-    #     )
-
-    email = EmailMultiAlternatives(
-        'Email Alt Title',
-        'Hello world 2',
-        settings.DEFAULT_FROM_EMAIL,
-        ['pyjamel224@gmail.com'],
-        None,
-    )
-
-    email.attach_alternative(html, 'text/html')
-
-    email2 = EmailMultiAlternatives(
-        'Email Alt Title',
-        'Hello world 2',
-        'Flux <fluxlite224@gmail.com>',
-        ['onyebuchi1099@gmail.com'],
-        None,
-    )
-
-    email2.attach_alternative(html, 'text/html')
-
-    conn.send_messages([email, email2])
-
-    conn.close()
-
-
-    return HttpResponse('Email send success!')
-
-
-def bet15(request):
-    rem = 0
-    if not request.session.__contains__('bets'):
-        print('No bet session')
-        request.session.__setitem__('bets', str(rem))
-    else:
-        rem = int(request.session.__getitem__('bets'))
-        print('REM: ', rem)
-    if request.method == 'POST':
-        if rem == 0:
-            msg = 'Insufficient bets!'
-            return render(request, 'bet15home.html', {'msg': msg, 'rem': rem})
-        
-        res = [random.randint(1, 6) for _ in range(3)]
-        request.session.__setitem__('bets', str(rem - 1))
-        rem -= 1
-        msg = ''
-        if res == [6, 6, 6] or res == [4, 4, 4]:
-            msg = 'You win!'
-        elif res.count(6) == 2 or res.count(4) == 2:
-            msg = 'So close!'
-        else:
-            msg = 'You lose, try again!'
-        
-        # def check(dice, faces):
-        # res = [random.randint(1, faces) for _ in range(dice)]
-        # msg = ''
-        # dice = 4
-        # count = 0
-        # for i in range(1, dice):
-        #     if res[0] == res[i]:
-        #         count += 1
-        # if count == dice - 1:
-        #     print(f'Correct: {res}')
-        #     msg = 'You win!'
-        # elif count == dice - 2:
-        #     print(f'So close: {res}')
-        #     msg = 'So close!'
-        # else:
-        #     print(f'Wrong: {res}')
-        #     msg = 'You lose, try again!'
-        # return count == dice - 1
-        return render(request, 'bet15.html', {'res': res, 'msg': msg, 'rem': rem})
-    return render(request, 'bet15home.html', {'rem': rem})
-
-def buy15(request):
-    rem = int(request.session.__getitem__('bets'))
-    request.session.__setitem__('bets', str(rem + 10))
-    return redirect('/bet15/')
-
-def get_posts(request):
-    print(request.headers)
-    posts = Post.objects.all()
-    res = HttpResponse(f"{len(posts)} posts")
-    return res
-
-def create_post(request):
-    print(request.headers)
-    if request.method == 'POST':
-        data = request.POST
-        title = data.get('title')
-        content = data.get('content')
-        print(title, content)
-
-        if title and content:
-            post = Post.objects.create(title=title, content=content)
-            print(f'POST WITH ID OF {post.id} CREATED!')
-            return redirect('/getposts/')
-        
-        return HttpResponse('Invalid create post data')
-
-def edit_post(request, id):
-    if request.method == 'POST':
-        try:
-            post = Post.objects.get(id=id)
-        except Post.DoesNotExist:
-            return HttpResponse('Post does not exist')
-        
-        print(request.POST)
-        data = request.POST
-        title = data.get('title')
-        content = data.get('content')
-        print(title, content)
-
-        if title and content:
-            post.title = title
-            post.content = content
-            post.save()
-            return redirect('/getposts/')
-
-        return HttpResponse('Invalid edit post data')
-
-def delete_post(request, id):
-    if request.method == 'POST':
-        try:
-            post = Post.objects.get(id=id)
-        except Post.DoesNotExist:
-            return HttpResponse('Post does not exist')
-        
-        post.delete()
-
-        return redirect('/getposts/')
         
 def not_found(request, exception):
     return render(request, '404.html')
@@ -199,14 +38,14 @@ def home(request):
 def checkout(request, order_id):
     order = Order.objects.get(id=order_id)
     if order.active:
-        return redirect(f'/trackorder/{order_id}')
+        return redirect('track_order', order_id=order.id)
     return render(request, 'checkout.html', {'order': order})
 
 @check_cookie_support
 def track_order(request, order_id):
     order = Order.objects.get(id=order_id)
     if not order.active:
-        return redirect(f'/checkout/{order_id}')
+        return redirect('go_to_checkout', order_id=order.id)
     return render(request, 'trackorder.html', {'order': order})
 
 def check_transaction_status(request, transaction_id):
@@ -243,10 +82,10 @@ def activate_order(request, order_id, transaction_id):
     transaction_id = str(transaction_id)
     order = Order.objects.get(id=order_id)
     if order.active:
-        return redirect(f'/trackorder/{order_id}')
-    transaction_id_exists_for_order = Order.objects.filter(transaction_id=transaction_id).count() > 0
+        return redirect('track_order', order_id=order.id)
+    transaction_id_exists_for_order = Order.objects.filter(transaction_id=transaction_id).exists()
     if transaction_id_exists_for_order:
-        return redirect(f'/checkout/{order_id}/')
+        return redirect('go_to_checkout', order_id=order.id)
     if not transaction_id:
         return HttpResponse('Transaction ID missing!')
     transaction_data = check_transaction_status(request, transaction_id)
@@ -292,7 +131,7 @@ def add_to_cart(request, product_id):
     if request.method == 'POST':
         cart = get_cart(request)
         product = get_object_or_404(Product, id=product_id)
-        check_cart_product_exists = CartProduct.objects.filter(product=product, cart=cart).count() > 0
+        check_cart_product_exists = CartProduct.objects.filter(product=product, cart=cart).exists()
         if check_cart_product_exists:
             existing_cart_product = CartProduct.objects.get(product=product, cart=cart)
             existing_cart_product.delete()
@@ -314,10 +153,10 @@ def cart(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)
             while True:
                 order_id = secrets.token_hex(5)
-                if Order.objects.filter(order_id=order_id).all().count() == 0:
+                if not Order.objects.filter(order_id=order_id).all().exists():
                     order.order_id = order_id
                     order.save()
                     break
@@ -325,7 +164,7 @@ def cart(request):
                 order.cartproducts.add(cartproduct)
                 cartproduct.cart = None
                 cartproduct.save()
-            return redirect(f'/checkout/{order.id}/')
+            return redirect('go_to_checkout', order_id=order.id)
         return render(request, "cart.html", {"cart": cart, "form": form})
     form = OrderForm()
     return render(request, "cart.html", {"cart": cart, "form": form})

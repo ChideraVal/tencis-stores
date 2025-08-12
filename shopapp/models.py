@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 
 class Product(models.Model):
@@ -26,9 +25,9 @@ class Cart(models.Model):
 
 
 class CartProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, db_index=True)
     quantity = models.IntegerField(default=1)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True, blank=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True, blank=True, db_index=True)
 
     def __str__(self):
         return self.product.name
@@ -41,8 +40,8 @@ class CartProduct(models.Model):
 
 
 class Order(models.Model):
-    order_id = models.CharField(max_length=150, null=True, blank=False)
-    transaction_id = models.CharField(max_length=150, null=True, blank=True)
+    order_id = models.CharField(max_length=150, null=True, blank=False, db_index=True)
+    transaction_id = models.CharField(max_length=150, null=True, blank=True, db_index=True)
     first_name = models.CharField(max_length=150, null=False, blank=False)
     last_name = models.CharField(max_length=150, null=False, blank=False)
     email = models.EmailField(max_length=100, null=False, blank=False)
@@ -55,13 +54,13 @@ class Order(models.Model):
     shipped = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)
     cartproducts = models.ManyToManyField(CartProduct, blank=False)
-    create_time = models.DateTimeField(default=timezone.now)
-    processed_time = models.DateTimeField(default=timezone.now)
-    shipped_time = models.DateTimeField(default=timezone.now)
-    delivered_time = models.DateTimeField(default=timezone.now)
+    create_time = models.DateTimeField(auto_now_add=True)
+    processed_time = models.DateTimeField(auto_now_add=True)
+    shipped_time = models.DateTimeField(auto_now_add=True)
+    delivered_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.email
+        return f"Order for {self.email}"
     
     def get_total_items(self):
         return sum(product.quantity for product in self.cartproducts.all())
@@ -69,10 +68,3 @@ class Order(models.Model):
     def get_total_price(self):
         return sum(product.product.price * product.quantity for product in self.cartproducts.all())
 
-
-class Post(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField(max_length=1000)
-
-    def __str__(self):
-        return self.title

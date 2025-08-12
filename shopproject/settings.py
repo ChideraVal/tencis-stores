@@ -25,6 +25,8 @@ load_dotenv(env_path)
 django_secret_key = os.getenv('DJANGO_SECRET_KEY')
 django_email_host_user = os.getenv('EMAIL_HOST_USER')
 django_email_host_password = os.getenv('EMAIL_HOST_PASSWORD')
+host_domain = os.getenv('HOST_DOMAIN')
+debug = os.getenv('DEBUG')
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,9 +38,9 @@ SECRET_KEY = str(django_secret_key)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = debug == 'True'
 APPEND_SLASH = True
-ALLOWED_HOSTS = ['store.tencis.online', '127.0.0.1']
+ALLOWED_HOSTS = [str(host_domain), '127.0.0.1']
 
 
 
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'shopapp.middleware.logger.greet_middleware'
 ]
 
 ROOT_URLCONF = 'shopproject.urls'
@@ -154,7 +157,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
 
-MEDIA_URL = 'tencismedia/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
@@ -174,13 +177,13 @@ SESSION_COOKIE_SAMESITE = 'Strict'
 
 # Cloudinary settings
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': str(os.getenv('CLOUDINARY_CLOUD_NAME')),
-#     'API_KEY': str(os.getenv('CLOUDINARY_API_KEY')),
-#     'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
-#     'SECURE': True
-# }
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': str(os.getenv('CLOUDINARY_CLOUD_NAME')),
+    'API_KEY': str(os.getenv('CLOUDINARY_API_KEY')),
+    'API_SECRET': str(os.getenv('CLOUDINARY_API_SECRET')),
+    'SECURE': True
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Default primary key field type

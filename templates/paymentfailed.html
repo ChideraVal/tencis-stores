@@ -8,10 +8,10 @@
 {% block body %}
     <div class="success">
         <div class="successinfo">
-            <img src="{% static 'x-button.png' %}" alt="" width="100" height="100">
+            <img src="{% static 'images/x-button.png' %}" alt="" width="100" height="100">
             <h2>Payment Failed!</h2>
             <p>Your payment of ₦{{ order.get_total_price }} was unsuccessful and your order ({{ order.order_id }})
-                has been declined. Please visit the <a href="/checkout/{{ order.id }}/">order checkout</a> page to restart the payment process. We
+                has been declined. Please visit the <a href="{% url 'go_to_checkout' order.id %}">order checkout</a> page to restart the payment process. We
                 also recommend using a different payment method. Need help with your order? Contact support at <a href="mailto:swsupport@gmail.com">swsupport@gmail.com</a>
             </p>
         </div>
@@ -51,5 +51,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'payment.js' %}"></script>
+    <script src="{% static 'js/navigation.js' %}"></script>
 {% endblock %}

@@ -8,7 +8,7 @@
 {% block body %}
     <div class="success">
         <div class="successinfo">
-            <img src="{% static 'tracking_17818197.png' %}" alt="" width="100" height="100">
+            <img src="{% static 'images/tracking_17818197.png' %}" alt="" width="100" height="100">
             <h2>Track Your Order</h2>
             <p>Welcome to your order tracking page. Here, you can track the current status of your order, from the moment
                 you placed it until the moment it gets delivered.
@@ -36,7 +36,7 @@
                 <h2>Tracking History</h2>
                 <div class="status">
                     <div class="checkicon">
-                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check.png' %}" alt="" width="25" height="25">
                     </div>
                     <div class="statustext">
                         <p>Order Created</p>
@@ -49,9 +49,9 @@
                 <div class="status">
                     <div class="checkicon">
                         {% if order.active %}
-                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check.png' %}" alt="" width="25" height="25">
                         {% else %}
-                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check_14610849.png' %}" alt="" width="25" height="25">
                         {% endif %}
                     </div>
                     <div class="statustext">
@@ -73,9 +73,9 @@
                 <div class="status">
                     <div class="checkicon">
                         {% if order.processed %}
-                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check.png' %}" alt="" width="25" height="25">
                         {% else %}
-                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check_14610849.png' %}" alt="" width="25" height="25">
                         {% endif %}
                     </div>
                     <div class="statustext">
@@ -97,9 +97,9 @@
                 <div class="status">
                     <div class="checkicon">
                         {% if order.shipped %}
-                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check.png' %}" alt="" width="25" height="25">
                         {% else %}
-                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check_14610849.png' %}" alt="" width="25" height="25">
                         {% endif %}
                     </div>
                     <div class="statustext">
@@ -121,9 +121,9 @@
                 <div class="status">
                     <div class="checkicon">
                         {% if order.delivered %}
-                        <img src="{% static 'check.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check.png' %}" alt="" width="25" height="25">
                         {% else %}
-                        <img src="{% static 'check_14610849.png' %}" alt="" width="25" height="25">
+                        <img src="{% static 'images/check_14610849.png' %}" alt="" width="25" height="25">
                         {% endif %}
                     </div>
                     <div class="statustext">
@@ -148,5 +148,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'payment.js' %}"></script>
+    <script src="{% static 'js/navigation.js' %}"></script>
 {% endblock %}

@@ -54,7 +54,7 @@
                 <div class="details">
                     <h2>Shipping Information</h2>
 
-                    <form action="/cart/" method="post">
+                    <form action="{% url 'view_cart' %}" method="post">
                         {% csrf_token %}
                         <input type="text" value="{{ order.get_total_price }}" id="amount" disabled hidden>
                         <input type="text" value="{{ order.id }}" id="order_id" disabled hidden>
@@ -102,5 +102,5 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'checkout.js' %}"></script>
+    <script src="{% static 'js/checkout.js' %}"></script>
 {% endblock %}

@@ -7,17 +7,15 @@
     {% block title %}
     {% endblock %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script> -->
 </head>
 
 <body>
     <div class="con">
         {% block body %}
         {% endblock %}
-        <div class="contact" id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="contact" id="contact">
             <div class="contcon">
 
                 <div class="contlogo">
@@ -47,13 +45,13 @@
                 </div>
                 <div class="conticons">
                     <div class="imgcon">
-                        <img src="{% static 'instagram_4494468.png' %}" alt="" width="35" height="35">
+                        <img src="{% static 'images/instagram_4494468.png' %}" alt="" width="35" height="35">
                     </div>
                     <div class="imgcon">
-                        <img src="{% static 'facebook_2168281.png' %}" alt="" width="35" height="35">
+                        <img src="{% static 'images/facebook_2168281.png' %}" alt="" width="35" height="35">
                     </div>
                     <div class="imgcon">
-                        <img src="{% static 'twitter_4401454.png' %}" alt="" width="35" height="35">
+                        <img src="{% static 'images/twitter_4401454.png' %}" alt="" width="35" height="35">
                     </div>
                 </div>
             </div>
@@ -76,10 +74,6 @@
 
     {% block cart %}
     {% endblock %}
-
-    <!-- <div class="banner">
-        <p>Created by <a href="https://www.tencis.online" target="_blank">Tencis Designs</a> </p>
-    </div> -->
 
     <div class="menubox" id="menu-element">
         <div class="menupage">
