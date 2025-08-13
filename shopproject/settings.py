@@ -43,7 +43,6 @@ APPEND_SLASH = True
 ALLOWED_HOSTS = [str(host_domain), '127.0.0.1']
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,8 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shopapp.apps.ShopappConfig',
-    'cloudinary_storage',
     'cloudinary',
+    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
@@ -158,7 +157,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Media files
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 #  CSRF cookie settings
